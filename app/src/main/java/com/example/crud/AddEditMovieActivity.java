@@ -88,7 +88,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
-    public void setupSeriesListSp() {
+    private void setupSeriesListSp() {
         seriesSp = findViewById(R.id.movie_series_sp);
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesAdapter);

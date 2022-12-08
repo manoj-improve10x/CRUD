@@ -25,10 +25,10 @@ import retrofit2.Response;
 
 public class MoviesActivity extends AppCompatActivity {
 
-    public ArrayList<Movie> movies = new ArrayList<>();
-    public RecyclerView moviesRv;
-    public ProgressBar moviesProgressbar;
-    public MoviesAdapter moviesAdapter;
+    private ArrayList<Movie> movies = new ArrayList<>();
+    private RecyclerView moviesRv;
+    private ProgressBar moviesProgressbar;
+    private MoviesAdapter moviesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class MoviesActivity extends AppCompatActivity {
         moviesProgressbar.setVisibility(View.GONE);
     }
 
-    public void setupMoviesRv() {
+    private void setupMoviesRv() {
         moviesProgressbar = findViewById(R.id.movies_progressbar);
         moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
@@ -89,7 +89,7 @@ public class MoviesActivity extends AppCompatActivity {
         moviesRv.setAdapter(moviesAdapter);
     }
 
-    public void fetchMovies() {
+    private void fetchMovies() {
         showProgressbar();
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();

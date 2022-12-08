@@ -25,10 +25,10 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends AppCompatActivity {
 
-    public ArrayList<Series> series = new ArrayList<>();
-    public RecyclerView seriesRv;
-    public SeriesAdapter seriesAdapter;
-    public ProgressBar seriesProgressbar;
+    private ArrayList<Series> series = new ArrayList<>();
+    private RecyclerView seriesRv;
+    private SeriesAdapter seriesAdapter;
+    private ProgressBar seriesProgressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class SeriesListActivity extends AppCompatActivity {
     }
 
 
-    public void setupSeriesRv() {
+    private void setupSeriesRv() {
         seriesProgressbar = findViewById(R.id.series_progressbar);
         seriesRv = findViewById(R.id.series_rv);
         seriesRv.setLayoutManager(new LinearLayoutManager(this));
@@ -114,7 +114,7 @@ public class SeriesListActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-    public void deleteSeries(String id) {
+    private void deleteSeries(String id) {
         SeriesListApi seriesListApi = new SeriesListApi();
         SeriesListService seriesListService = seriesListApi.createSeriesListService();
         Call<Void> call = seriesListService.deleteSeries(id);
@@ -130,7 +130,7 @@ public class SeriesListActivity extends AppCompatActivity {
             }
         });
     }
-    public void editSeries(Series series) {
+    private void editSeries(Series series) {
         Intent intent = new Intent(this, AddEditSeriesActivity.class);
         intent.putExtra(Constants.KEY_SERIES, series);
         startActivity(intent);

@@ -18,10 +18,10 @@ import retrofit2.Response;
 
 public class AddEditMessageActivity extends AppCompatActivity {
 
-    public Message messages;
-    public EditText addNameTxt;
-    public EditText addNumberTxt;
-    public EditText addMessageTxt;
+    private Message messages;
+    private EditText addNameTxt;
+    private EditText addNumberTxt;
+    private EditText addMessageTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         addMessageTxt.setText(messages.messageText);
     }
 
-    public void findIds() {
+    private void findIds() {
         addNameTxt = findViewById(R.id.add_name_txt);
         addNumberTxt = findViewById(R.id.add_number_txt);
         addMessageTxt = findViewById(R.id.add_message_txt);
@@ -72,7 +72,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }
     }
 
-    public void setAddMessage(String name, String number, String message) {
+    private void setAddMessage(String name, String number, String message) {
         messages = new Message();
         messages.name = name;
         messages.messageText = message;
@@ -93,7 +93,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
             }
         });
     }
-    public void setEditMessage(String id, String name, String number, String message) {
+    private void setEditMessage(String id, String name, String number, String message) {
         messages = new Message();
         messages.name = name;
         messages.number = number;
