@@ -36,13 +36,14 @@ public class MoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
         getSupportActionBar().setTitle("Movies");
-        Log.i("MoviesActivity", "onCreate called");
+        log("onCreate");
         setupMoviesRv();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        log("onResume");
         fetchMovies();
     }
 
@@ -61,6 +62,10 @@ public class MoviesActivity extends AppCompatActivity {
         }else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void log(String message) {
+        Log.i("MoviesActivity",message);
     }
 
     private void showProgressbar() {
@@ -92,7 +97,6 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     private void fetchMovies() {
-        Log.i("MoviesActivity", "successfully called movies from api ");
         showProgressbar();
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();

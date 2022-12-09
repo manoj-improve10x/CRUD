@@ -41,7 +41,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
-        Log.i("AddEditMovieActivity", "onCreate called");
+        log("on create");
         setupApiService();
         setupSeriesListSp();
         findIds();
@@ -81,6 +81,10 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
+    private void log(String message) {
+        Log.i("AddEditMovieActivity", message);
+    }
+
     private void setupToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -118,12 +122,11 @@ public class AddEditMovieActivity extends AppCompatActivity {
     }
 
     private void fetchSeriesList() {
-        Log.i("AddEditMovieActivity", "fetch series  called");
         Call<List<Series>> call = service.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                Toast.makeText(AddEditMovieActivity.this, "success", Toast.LENGTH_SHORT).show();
+                setupToast("successfully load data");
                 List<Series> series = response.body();
                 customSeriesAdapter.addAll(series);
                 if (movie != null) {
@@ -152,7 +155,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-                Log.i("AddEditMovieActivity", "addMovie called");
                setupToast("Successfully added");
                 finish();
             }

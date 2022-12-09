@@ -39,7 +39,7 @@ public class SeriesListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series);
         getSupportActionBar().setTitle("Series");
-        Log.i("SeriesListActivity", "onCreate called");
+        log("onCreate");
         setupApiService();
         setupSeriesRv();
     }
@@ -52,8 +52,12 @@ public class SeriesListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("SeriesListActivity", "onResume called");
+       log("onResume");
         fetchSeries();
+    }
+
+    private void log(String message) {
+        Log.i("SeriesListActivity", message);
     }
 
     private void hideProgressbar() {

@@ -36,9 +36,13 @@ public class MessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
+        log("on Create Called");
         setupApiService();
-        Log.i("MessagesActivity", "onCreate called");
         setupMessageRv();
+    }
+
+    private void log(String message) {
+        Log.i("MessagesActivity", message);
     }
 
     private void setupApiService() {
@@ -53,7 +57,7 @@ public class MessagesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("MessagesActivity", "Messages OnResume called");
+       log("on Resume");
         fetchData();
     }
 

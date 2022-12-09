@@ -31,7 +31,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_series);
-        Log.i("AddEditSeriesActivity", "onCreate called");
+        log("onCreate");
         setupApiService();
         findIds();
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
@@ -41,6 +41,10 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         }else {
             getSupportActionBar().setTitle("Add Series");
         }
+    }
+
+    private void log(String message) {
+        Log.i("AddEditSeriesActivity", message);
     }
 
     private void setupToast(String message) {

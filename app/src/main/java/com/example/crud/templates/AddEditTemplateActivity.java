@@ -30,7 +30,7 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_template);
         setupApiService();
-        Log.i("AddEditTemplateActivity", "onCreate called");
+        log("onCreate");
         addTemplateTxt = findViewById(R.id.add_template_txt);
         if (getIntent().hasExtra(Constants.KEY_TEMPLATE)) {
             template = (Template)getIntent().getSerializableExtra(Constants.KEY_TEMPLATE);
@@ -40,6 +40,11 @@ public class AddEditTemplateActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Add Template");
         }
     }
+
+    private void log(String message) {
+        Log.i("SeriesListActivity", message);
+    }
+
     private void setupApiService() {
         CrudApi api = new CrudApi();
         service = api.createCrudService();
@@ -101,7 +106,6 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.i("AddEditTemplateActivity", "successfully called editTemplate");
                 finish();
                 setupToast("Successfully updated the template");
             }

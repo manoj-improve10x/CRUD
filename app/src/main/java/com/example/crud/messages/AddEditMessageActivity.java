@@ -31,7 +31,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
-        Log.i("AddEditMessageActivity", "AddEditMessageActivity onCrate called");
+        log("onCreate");
         setupApiService();
         findIds();
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
@@ -41,6 +41,10 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }else {
             getSupportActionBar().setTitle("Add Message");
         }
+    }
+
+    private void log(String message) {
+        Log.i("AddEditMessagesActivity", message);
     }
 
     public void setupToast(String message) {
@@ -119,7 +123,6 @@ public class AddEditMessageActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 setupToast("successfully edited");
                 finish();
-                Log.i("AddEditMessageActivity", "AddEditMessageActivity onEdit called");
             }
 
             @Override
