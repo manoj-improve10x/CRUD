@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 import com.example.crud.series.AddEditSeriesActivity;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import retrofit2.Response;
 
 public class TemplatesActivity extends AppCompatActivity {
 
+    private CrudService service;
     private RecyclerView templatesRv;
     private ArrayList<Template> templates = new ArrayList<>();
     private ProgressBar templatesProgressbar;
@@ -36,11 +39,22 @@ public class TemplatesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
+        setupApiService();
         Log.i("TemplatesActivity", "onCreate called");
         getSupportActionBar().setTitle("Templates");
         setupTemplatesRv();
 
     }
+
+    private void setupApiService() {
+        CrudApi api = new CrudApi();
+        service = api.createCrudService();
+    }
+
+    private void setupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     private void showProgressbar() {
         templatesProgressbar.setVisibility(View.VISIBLE);
     }
@@ -77,9 +91,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
     private void fetchTemplate() {
         showProgressbar();
-        TemplatesApi templatesApi = new TemplatesApi();
-        TemplatesService templatesService = templatesApi.creteTemplatesService();
-        Call<List<Template>> call = templatesService.fetchTemplate();
+        Call<List<Template>> call = service.fetchTemplate();
         call.enqueue(new Callback<List<Template>>() {
             @Override
             public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
@@ -118,18 +130,16 @@ public class TemplatesActivity extends AppCompatActivity {
     }
 
     private void deleteTemplate(String id) {
-        TemplatesApi templatesApi = new TemplatesApi();
-        TemplatesService templatesService = templatesApi.creteTemplatesService();
-        Call<Void> call = templatesService.deleteTemplate(id);
+        Call<Void> call =service .deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(TemplatesActivity.this, "success", Toast.LENGTH_SHORT).show();
+                setupToast("successfully deleted ");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                setupToast("failed to deleted");
             }
         });
     }
