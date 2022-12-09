@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.crud.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
+        Log.i("AddEditMessageActivity", "AddEditMessageActivity onCrate called");
         findIds();
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
             messages = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
@@ -51,7 +53,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_message_menu, menu);
+        getMenuInflater().inflate(R.menu.add_edit_message_menu, menu);
         return true;
     }
 
@@ -106,6 +108,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 finish();
+                Log.i("AddEditMessageActivity", "AddEditMessageActivity onEdit called");
             }
 
             @Override

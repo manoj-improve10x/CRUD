@@ -1,6 +1,7 @@
-package com.example.crud;
+package com.example.crud.movies;
 
-import com.example.crud.templates.Template;
+import com.example.crud.Constants;
+import com.example.crud.movies.Movie;
 
 import java.util.List;
 

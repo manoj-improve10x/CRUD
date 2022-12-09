@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,12 +36,14 @@ public class SeriesListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series);
         getSupportActionBar().setTitle("Series");
+        Log.i("SeriesListActivity", "onCreate called");
         setupSeriesRv();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i("SeriesListActivity", "onResume called");
         fetchSeries();
     }
 

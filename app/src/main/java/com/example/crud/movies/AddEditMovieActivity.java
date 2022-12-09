@@ -1,15 +1,18 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
+import com.example.crud.R;
 import com.example.crud.series.Series;
 import com.example.crud.series.SeriesListApi;
 import com.example.crud.series.SeriesListService;
@@ -37,6 +40,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
+        Log.i("AddEditMovieActivity", "onCreate called");
         setupSeriesListSp();
         findIds();
         fetchSeriesList();
@@ -103,6 +107,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
     }
 
     private void fetchSeriesList() {
+        Log.i("AddEditMovieActivity", "fetch series  called");
         SeriesListApi seriesApi = new SeriesListApi();
         SeriesListService seriesListService = seriesApi.createSeriesListService();
         Call<List<Series>> call = seriesListService.fetchSeries();
@@ -140,6 +145,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
+                Log.i("AddEditMovieActivity", "addMovie called");
                 Toast.makeText(AddEditMovieActivity.this, "success", Toast.LENGTH_SHORT).show();
                 finish();
             }

@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.crud.AddEditMovieActivity;
-import com.example.crud.MoviesActivity;
+import com.example.crud.movies.MoviesActivity;
 import com.example.crud.series.SeriesListActivity;
 import com.example.crud.messages.MessagesActivity;
 import com.example.crud.R;

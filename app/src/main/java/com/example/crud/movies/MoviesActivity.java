@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.crud.templates.AddEditTemplateActivity;
-import com.example.crud.templates.Template;
+import com.example.crud.Constants;
+import com.example.crud.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class MoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
         getSupportActionBar().setTitle("Movies");
+        Log.i("MoviesActivity", "onCreate called");
         setupMoviesRv();
     }
 
@@ -90,6 +92,7 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     private void fetchMovies() {
+        Log.i("MoviesActivity", "successfully called movies from api ");
         showProgressbar();
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();

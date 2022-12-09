@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -31,6 +32,7 @@ public class MessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
+        Log.i("MessagesActivity", "onCreate called");
         fetchData();
         setupMessageRv();
     }
@@ -38,10 +40,12 @@ public class MessagesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.i("MessagesActivity", "Messages OnResume called");
         fetchData();
     }
 
     private void fetchData() {
+        //Log.i("MessagesActivity", "fetching Messages api started");
         MessageApi messageApi = new MessageApi();
         MessagesService messagesService = messageApi.createMessagesService();
         Call<List<Message>> call = messagesService.fetchData();
@@ -50,6 +54,7 @@ public class MessagesActivity extends AppCompatActivity {
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
                 messageAdapter.setData(messages);
+                //Log.i("MessagesActivity", "Successfully received Messages api started");
             }
 
             @Override
