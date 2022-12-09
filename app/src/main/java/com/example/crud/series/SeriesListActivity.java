@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends AppCompatActivity {
 
+    private CrudService service;
     private ArrayList<Series> series = new ArrayList<>();
     private RecyclerView seriesRv;
     private SeriesAdapter seriesAdapter;
@@ -37,7 +40,13 @@ public class SeriesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_series);
         getSupportActionBar().setTitle("Series");
         Log.i("SeriesListActivity", "onCreate called");
+        setupApiService();
         setupSeriesRv();
+    }
+
+    private void setupApiService() {
+        CrudApi api = new CrudApi();
+        service = api.createCrudService();
     }
 
     @Override
@@ -57,9 +66,8 @@ public class SeriesListActivity extends AppCompatActivity {
 
     private void fetchSeries() {
         showProgressbar();
-        SeriesListApi seriesListApi = new SeriesListApi();
-        SeriesListService seriesListService = seriesListApi.createSeriesListService();
-        Call<List<Series>> call = seriesListService.fetchSeries();
+
+        Call<List<Series>> call = service.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
@@ -118,9 +126,7 @@ public class SeriesListActivity extends AppCompatActivity {
         }
     }
     private void deleteSeries(String id) {
-        SeriesListApi seriesListApi = new SeriesListApi();
-        SeriesListService seriesListService = seriesListApi.createSeriesListService();
-        Call<Void> call = seriesListService.deleteSeries(id);
+        Call<Void> call = service.deleteSeries(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 import com.example.crud.series.Series;
-import com.example.crud.series.SeriesListApi;
-import com.example.crud.series.SeriesListService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ import retrofit2.Response;
 
 public class AddEditMovieActivity extends AppCompatActivity {
 
+    private CrudService service;
     public CustomSeriesAdapter customSeriesAdapter;
     private ArrayList<Series> seriesList = new ArrayList<>();
     private Spinner seriesSp;
@@ -41,6 +42,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
         Log.i("AddEditMovieActivity", "onCreate called");
+        setupApiService();
         setupSeriesListSp();
         findIds();
         fetchSeriesList();
@@ -79,6 +81,15 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
+    private void setupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void setupApiService() {
+        CrudApi api = new CrudApi();
+        service = api.createCrudService();
+    }
+
     private void showData() {
         movieNameTxt.setText(movie.movieName);
         movieIdTxt.setText(movie.movieId);
@@ -108,9 +119,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
     private void fetchSeriesList() {
         Log.i("AddEditMovieActivity", "fetch series  called");
-        SeriesListApi seriesApi = new SeriesListApi();
-        SeriesListService seriesListService = seriesApi.createSeriesListService();
-        Call<List<Series>> call = seriesListService.fetchSeries();
+        Call<List<Series>> call = service.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
@@ -139,14 +148,12 @@ public class AddEditMovieActivity extends AppCompatActivity {
         movie.description = description;
         movie.seriesId = seriesId;
 
-        MoviesApi moviesApi = new MoviesApi();
-        MoviesService moviesService = moviesApi.createMoviesService();
-        Call<Movie> call = moviesService.createMovie(movie);
+        Call<Movie> call = service.createMovie(movie);
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 Log.i("AddEditMovieActivity", "addMovie called");
-                Toast.makeText(AddEditMovieActivity.this, "success", Toast.LENGTH_SHORT).show();
+               setupToast("Successfully added");
                 finish();
             }
 
@@ -165,13 +172,11 @@ public class AddEditMovieActivity extends AppCompatActivity {
         movie.description = description;
         movie.seriesId = seriesId;
 
-        MoviesApi moviesApi = new MoviesApi();
-        MoviesService movieService = moviesApi.createMoviesService();
-        Call<Void> call = movieService.editMovie(id, movie);
+        Call<Void> call = service.editMovie(id, movie);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddEditMovieActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                setupToast("successfully updated");
                 finish();
             }
 

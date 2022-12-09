@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,6 +21,7 @@ import retrofit2.Response;
 
 public class AddEditMessageActivity extends AppCompatActivity {
 
+    private CrudService service;
     private Message messages;
     private EditText addNameTxt;
     private EditText addNumberTxt;
@@ -29,6 +32,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
         Log.i("AddEditMessageActivity", "AddEditMessageActivity onCrate called");
+        setupApiService();
         findIds();
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
             messages = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
@@ -37,6 +41,15 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }else {
             getSupportActionBar().setTitle("Add Message");
         }
+    }
+
+    public void setupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void setupApiService() {
+        CrudApi api = new CrudApi();
+        service = api.createCrudService();
     }
 
     private void showData() {
@@ -79,13 +92,12 @@ public class AddEditMessageActivity extends AppCompatActivity {
         messages.name = name;
         messages.messageText = message;
         messages.number = number;
-        MessageApi messageApi = new MessageApi();
-        MessagesService messagesService = messageApi.createMessagesService();
-        Call<Message> call = messagesService.createMessage(messages);
+
+        Call<Message> call = service.createMessage(messages);
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                Toast.makeText(AddEditMessageActivity.this, "success", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully added");
                 finish();
             }
 
@@ -101,12 +113,11 @@ public class AddEditMessageActivity extends AppCompatActivity {
         messages.number = number;
         messages.messageText = message;
 
-        MessageApi messageApi = new MessageApi();
-        MessagesService messagesService = messageApi.createMessagesService();
-        Call<Void> call = messagesService.editMessage(id,messages);
+        Call<Void> call = service.editMessage(id,messages);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                setupToast("successfully edited");
                 finish();
                 Log.i("AddEditMessageActivity", "AddEditMessageActivity onEdit called");
             }

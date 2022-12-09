@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ import retrofit2.Response;
 
 public class MessagesActivity extends AppCompatActivity {
 
+    private CrudService service;
     private ArrayList<Message> messages = new ArrayList<>();
     private RecyclerView messagesRv;
     private MessageAdapter messageAdapter;
@@ -32,9 +36,18 @@ public class MessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
+        setupApiService();
         Log.i("MessagesActivity", "onCreate called");
-        fetchData();
         setupMessageRv();
+    }
+
+    private void setupApiService() {
+        CrudApi api = new CrudApi();
+        service = api.createCrudService();
+    }
+
+    private void setupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -45,16 +58,13 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        //Log.i("MessagesActivity", "fetching Messages api started");
-        MessageApi messageApi = new MessageApi();
-        MessagesService messagesService = messageApi.createMessagesService();
-        Call<List<Message>> call = messagesService.fetchData();
+        Call<List<Message>> call = service.fetchData();
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
                 messageAdapter.setData(messages);
-                //Log.i("MessagesActivity", "Successfully received Messages api started");
+
             }
 
             @Override
@@ -103,17 +113,17 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     private void deleteMessage(String id) {
-        MessageApi messageApi = new MessageApi();
-        MessagesService messagesService = messageApi.createMessagesService();
-        Call<Void> call = messagesService.deleteMessage(id);
+        Call<Void> call = service.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                setupToast("successfully deleted");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                setupToast("failed to delete");
 
             }
         });
