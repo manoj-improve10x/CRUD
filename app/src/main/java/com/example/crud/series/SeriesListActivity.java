@@ -18,6 +18,7 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeriesListActivity extends AppCompatActivity {
+public class SeriesListActivity extends BaseActivity {
 
     private CrudService service;
     private ArrayList<Series> series = new ArrayList<>();
@@ -56,10 +57,6 @@ public class SeriesListActivity extends AppCompatActivity {
         fetchSeries();
     }
 
-    private void log(String message) {
-        Log.i("SeriesListActivity", message);
-    }
-
     private void hideProgressbar() {
         seriesProgressbar.setVisibility(View.GONE);
     }
@@ -67,6 +64,7 @@ public class SeriesListActivity extends AppCompatActivity {
     private void showProgressbar() {
         seriesProgressbar.setVisibility(View.VISIBLE);
     }
+
 
     private void fetchSeries() {
         showProgressbar();
@@ -78,13 +76,12 @@ public class SeriesListActivity extends AppCompatActivity {
                 List<Series> series = response.body();
                 seriesAdapter.setData(series);
                 hideProgressbar();
-                Toast.makeText(SeriesListActivity.this, "Success", Toast.LENGTH_SHORT).show();
-
+                showToast("Successfully loaded the data");
             }
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                Toast.makeText(SeriesListActivity.this, "failure", Toast.LENGTH_SHORT).show();
+              showToast("Failed to load data");
                 hideProgressbar();
             }
         });
@@ -134,12 +131,12 @@ public class SeriesListActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-
+                showToast("Successfully deleted series");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                showToast("Failed to delete series");
             }
         });
     }

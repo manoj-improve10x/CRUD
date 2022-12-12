@@ -14,12 +14,13 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditMessageActivity extends AppCompatActivity {
+public class AddEditMessageActivity extends BaseActivity {
 
     private CrudService service;
     private Message messages;
@@ -41,14 +42,6 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }else {
             getSupportActionBar().setTitle("Add Message");
         }
-    }
-
-    private void log(String message) {
-        Log.i("AddEditMessagesActivity", message);
-    }
-
-    public void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void setupApiService() {
@@ -101,13 +94,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                setupToast("Successfully added");
+                showToast("Successfully added the message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-
+                showToast("failed to add message");
             }
         });
     }
@@ -121,13 +114,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("successfully edited");
+                showToast("successfully updated the message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                showToast("failed to update message ");
             }
         });
 

@@ -16,6 +16,7 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MessagesActivity extends AppCompatActivity {
+public class MessagesActivity extends BaseActivity {
 
     private CrudService service;
     private ArrayList<Message> messages = new ArrayList<>();
@@ -41,17 +42,9 @@ public class MessagesActivity extends AppCompatActivity {
         setupMessageRv();
     }
 
-    private void log(String message) {
-        Log.i("MessagesActivity", message);
-    }
-
     private void setupApiService() {
         CrudApi api = new CrudApi();
         service = api.createCrudService();
-    }
-
-    private void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -67,13 +60,14 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
+                showToast("successfully loaded the data");
                 messageAdapter.setData(messages);
 
             }
 
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
-
+                showToast("failed to load data");
             }
         });
     }
@@ -121,13 +115,13 @@ public class MessagesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("successfully deleted");
+                showToast("successfully deleted the message");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("failed to delete");
+                showToast("failed to delete message");
 
             }
         });

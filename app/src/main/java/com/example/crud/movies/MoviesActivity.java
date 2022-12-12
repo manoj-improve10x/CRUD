@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviesActivity extends AppCompatActivity {
+public class MoviesActivity extends BaseActivity {
 
     private ArrayList<Movie> movies = new ArrayList<>();
     private RecyclerView moviesRv;
@@ -62,10 +63,6 @@ public class MoviesActivity extends AppCompatActivity {
         }else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void log(String message) {
-        Log.i("MoviesActivity",message);
     }
 
     private void showProgressbar() {
@@ -107,12 +104,12 @@ public class MoviesActivity extends AppCompatActivity {
                 List<Movie> movies = response.body();
                 moviesAdapter.setData(movies);
                 hideProgressbar();
-                Toast.makeText(MoviesActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                showToast("Successfully loaded the data");
             }
 
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
-
+                showToast("Failed to load data");
             }
         });
     }
@@ -124,12 +121,12 @@ public class MoviesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 fetchMovies();
-                Toast.makeText(MoviesActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                showToast("Successfully deleted the movie");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                showToast("Failed to delete movie");
             }
         });
     }

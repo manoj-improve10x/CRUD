@@ -14,12 +14,13 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditSeriesActivity extends AppCompatActivity {
+public class AddEditSeriesActivity extends BaseActivity {
 
     private CrudService service;
     private Series series;
@@ -41,14 +42,6 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         }else {
             getSupportActionBar().setTitle("Add Series");
         }
-    }
-
-    private void log(String message) {
-        Log.i("AddEditSeriesActivity", message);
-    }
-
-    private void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void setupApiService() {
@@ -98,13 +91,13 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
-                setupToast("successfully added");
+                showToast("successfully added the series");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                setupToast("failed to added");
+                showToast("failed to add series");
 
             }
         });
@@ -120,15 +113,14 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("Successfully updated");
+                showToast("Successfully updated the series");
                 finish();
 
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("failed to updated");
-
+                showToast("failed to update series");
             }
         });
     }

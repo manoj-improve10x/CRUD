@@ -15,6 +15,7 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.series.Series;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditMovieActivity extends AppCompatActivity {
+public class AddEditMovieActivity extends BaseActivity {
 
     private CrudService service;
     public CustomSeriesAdapter customSeriesAdapter;
@@ -81,14 +82,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
-    private void log(String message) {
-        Log.i("AddEditMovieActivity", message);
-    }
-
-    private void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     private void setupApiService() {
         CrudApi api = new CrudApi();
         service = api.createCrudService();
@@ -126,7 +119,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                setupToast("successfully load data");
+                showToast("successfully loaded the data");
                 List<Series> series = response.body();
                 customSeriesAdapter.addAll(series);
                 if (movie != null) {
@@ -137,7 +130,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-
+                showToast("Failed to load data");
             }
         });
     }
@@ -155,13 +148,13 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-               setupToast("Successfully added");
+               showToast("Successfully added the movie");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-
+                showToast("Failed to add movie");
             }
         });
     }
@@ -178,13 +171,13 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("successfully updated");
+                showToast("successfully updated the movie");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                showToast("Failed to update movie");
             }
         });
     }

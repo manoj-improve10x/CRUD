@@ -14,12 +14,13 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditTemplateActivity extends AppCompatActivity {
+public class AddEditTemplateActivity extends BaseActivity {
 
     private CrudService service;
     private EditText addTemplateTxt;
@@ -41,17 +42,9 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         }
     }
 
-    private void log(String message) {
-        Log.i("SeriesListActivity", message);
-    }
-
     private void setupApiService() {
         CrudApi api = new CrudApi();
         service = api.createCrudService();
-    }
-
-    private void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void showData() {
@@ -87,13 +80,13 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Template>() {
             @Override
             public void onResponse(Call<Template> call, Response<Template> response) {
-                setupToast("successfully added  the template");
+                showToast("successfully added  the template");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Template> call, Throwable t) {
-
+                showToast("Failed to load data ");
             }
         });
     }
@@ -107,12 +100,12 @@ public class AddEditTemplateActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 finish();
-                setupToast("Successfully updated the template");
+                showToast("Successfully updated the template");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                showToast("Failed to update template");
             }
         });
     }
