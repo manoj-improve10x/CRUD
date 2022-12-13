@@ -10,6 +10,7 @@ public class Series implements Serializable {
     public String id;
     public String seriesId;
     public String imageUrl;
+
     @SerializedName("title")
     public String name;
 }

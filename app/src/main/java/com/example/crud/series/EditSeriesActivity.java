@@ -14,6 +14,8 @@ import retrofit2.Response;
 
 public class EditSeriesActivity extends BaseAddEditSeriesActivity{
 
+    private  Series series;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +35,21 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //change name id
         if (item.getItemId() == R.id.check) {
+            String id = seriesId.getText().toString();
             String name = seriesName.getText().toString();
             String imageUrl = seriesImage.getText().toString();
-            setEditSeries(this.series.id, name, imageUrl);
+            setEditSeries(id, name, imageUrl);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
-
+//change method name
     private void setEditSeries(String id, String name, String imageUrl) {
         series = new Series();
-        // series.id = id;
+        series.seriesId = id;
         series.name = name;
         series.imageUrl = imageUrl;
 

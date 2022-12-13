@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class BaseAddEditSeriesActivity extends BaseActivity {
 
     protected CrudService service;
-    protected Series series;
+    //change ids add name Txt
     protected EditText seriesId;
     protected EditText seriesName;
     protected EditText seriesImage;

@@ -65,7 +65,6 @@ public class SeriesListActivity extends BaseActivity {
 
     private void fetchSeries() {
         showProgressbar();
-
         Call<List<Series>> call = service.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
@@ -73,12 +72,12 @@ public class SeriesListActivity extends BaseActivity {
                 List<Series> series = response.body();
                 seriesAdapter.setData(series);
                 hideProgressbar();
-                showToast("Successfully loaded the data");
+                showToast("Successfully loaded the series");
             }
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-              showToast("Failed to load data");
+              showToast("Failed to load series");
                 hideProgressbar();
             }
         });
@@ -95,7 +94,6 @@ public class SeriesListActivity extends BaseActivity {
             @Override
             public void onEdit(Series series) {
                 editSeries(series);
-
             }
 
             @Override
@@ -137,6 +135,7 @@ public class SeriesListActivity extends BaseActivity {
             }
         });
     }
+
     private void editSeries(Series series) {
         Intent intent = new Intent(this, EditSeriesActivity.class);
         intent.putExtra(Constants.KEY_SERIES, series);

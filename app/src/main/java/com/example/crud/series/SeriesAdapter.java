@@ -14,14 +14,14 @@ import java.util.List;
 
 public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
-    private List<Series> serieses;
+    private List<Series> seriesList;
     private OnItemActionListener onItemActionListener;
 
     public void setOnItemActionListener(OnItemActionListener actionListener) {
         onItemActionListener = actionListener;
     }
     public void setData(List<Series> seriesList) {
-        serieses = seriesList;
+        this.seriesList = seriesList;
         notifyDataSetChanged();
     }
     @NonNull
@@ -34,7 +34,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
-        Series series = serieses.get(position);
+        Series series = seriesList.get(position);
         holder.seriesNameTxt.setText(series.name);
         if(series.imageUrl != null && series.imageUrl.isEmpty() == false) {
             Picasso.get().load(series.imageUrl).into(holder.seriesImg);
@@ -49,6 +49,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     @Override
     public int getItemCount() {
-        return serieses.size();
+        return seriesList.size();
     }
 }

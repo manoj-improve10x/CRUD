@@ -13,6 +13,7 @@ import com.example.crud.R;
 public class SeriesViewHolder extends RecyclerView.ViewHolder {
 
      TextView seriesNameTxt;
+     //change object name
      ImageButton seriesDeleteBtn;
      ImageView seriesImg;
 

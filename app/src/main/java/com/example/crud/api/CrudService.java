@@ -1,10 +1,10 @@
 package com.example.crud.api;
 
 import com.example.crud.Constants;
-import com.example.crud.messages.Message;
-import com.example.crud.movies.Movie;
+import com.example.crud.message.Message;
+import com.example.crud.movie.Movie;
 import com.example.crud.series.Series;
-import com.example.crud.templates.Template;
+import com.example.crud.template.Template;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 public interface CrudService {
 
     @GET(Constants.MESSAGE_END_POINT)
-    Call<List<Message>> fetchData();
+    Call<List<Message>> fetchMessages();
 
     @POST(Constants.MESSAGE_END_POINT)
     Call<Message>  createMessage(@Body Message message);
@@ -31,7 +31,7 @@ public interface CrudService {
     Call<Void> editMessage(@Path("id") String id, @Body Message message);
 
     @GET(Constants.TEMPLATES_END_POINT)
-    Call<List<Template>> fetchTemplate();
+    Call<List<Template>> fetchTemplates();
 
     @POST(Constants.TEMPLATES_END_POINT)
     Call<Template> createTemplate(@Body Template template);

@@ -21,18 +21,21 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //change
         if (item.getItemId() == R.id.check) {
+            String id = seriesId.getText().toString();
             String name = seriesName.getText().toString();
             String imageUrl = seriesImage.getText().toString();
-                setAddSeries(name, imageUrl);
+                setAddSeries(name, id , imageUrl);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void setAddSeries(String name, String imageUrl) {
-        series = new Series();
+    private void setAddSeries(String name,String id, String imageUrl) {
+        Series series = new Series();
+        series.seriesId = id;
         series.name = name;
         series.imageUrl = imageUrl;
         Call<Series> call = service.createSeries(series);
