@@ -1,15 +1,12 @@
 package com.example.crud.movies;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
@@ -25,17 +22,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditMovieActivity extends BaseActivity {
+public class BaseAddEditMovieActivity extends BaseActivity {
 
-    private CrudService service;
-    public CustomSeriesAdapter customSeriesAdapter;
-    private ArrayList<Series> seriesList = new ArrayList<>();
-    private Spinner seriesSp;
-    private Movie movie;
-    private EditText movieNameTxt;
-    private EditText movieIdTxt;
-    private EditText imageUrlTxt;
-    private EditText movieDescriptionTxt;
+    protected CrudService service;
+    protected CustomSeriesAdapter customSeriesAdapter;
+    protected ArrayList<Series> seriesList = new ArrayList<>();
+    protected Spinner seriesSp;
+    protected Movie movie;
+    protected EditText movieNameTxt;
+    protected EditText movieIdTxt;
+    protected EditText imageUrlTxt;
+    protected EditText movieDescriptionTxt;
 
 
     @Override
