@@ -44,13 +44,6 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         setupSeriesListSp();
         findIds();
         fetchSeriesList();
-        if (getIntent().hasExtra(Constants.KEY_MOVIE)) {
-            getSupportActionBar().setTitle("Edit Title");
-            movie = (Movie) getIntent().getSerializableExtra(Constants.KEY_MOVIE);
-            showData();
-        }else {
-            getSupportActionBar().setTitle("Add Title");
-        }
     }
 
     @Override
@@ -59,32 +52,13 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.check_movie){
-            String name = movieNameTxt.getText().toString();
-            String movieId = movieIdTxt.getText().toString();
-            Series series = (Series) seriesSp.getSelectedItem();
-            String seriesId = series.seriesId;
-            String imagesUrl = imageUrlTxt.getText().toString();
-            String description = movieDescriptionTxt.getText().toString();
-            if(movie == null){
-                addMovie(name, movieId, seriesId, imagesUrl, description);
-            }else {
-                editMovie(movie.id, name, movieId, seriesId, imagesUrl, description);
-            }
-            return true;
-        }else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void setupApiService() {
         CrudApi api = new CrudApi();
         service = api.createCrudService();
     }
 
-    private void showData() {
+    protected void showData() {
         movieNameTxt.setText(movie.movieName);
         movieIdTxt.setText(movie.movieId);
         imageUrlTxt.setText(movie.movieImageUrl);
@@ -128,53 +102,6 @@ public class BaseAddEditMovieActivity extends BaseActivity {
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
                 showToast("Failed to load data");
-            }
-        });
-    }
-
-    private void addMovie(String name, String movieId, String seriesId, String imagesUrl, String description) {
-        movie = new Movie();
-
-        movie.movieName = name;
-        movie.movieImageUrl = imagesUrl;
-        movie.movieId = movieId;
-        movie.description = description;
-        movie.seriesId = seriesId;
-
-        Call<Movie> call = service.createMovie(movie);
-        call.enqueue(new Callback<Movie>() {
-            @Override
-            public void onResponse(Call<Movie> call, Response<Movie> response) {
-               showToast("Successfully added the movie");
-                finish();
-            }
-
-            @Override
-            public void onFailure(Call<Movie> call, Throwable t) {
-                showToast("Failed to add movie");
-            }
-        });
-    }
-    private void editMovie(String id, String movieId, String seriesId, String name, String imagesUrl, String description) {
-        movie = new Movie();
-
-        movie.movieName = name;
-        movie.movieId = movieId;
-        movie.movieImageUrl = imagesUrl;
-        movie.description = description;
-        movie.seriesId = seriesId;
-
-        Call<Void> call = service.editMovie(id, movie);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                showToast("successfully updated the movie");
-                finish();
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to update movie");
             }
         });
     }
