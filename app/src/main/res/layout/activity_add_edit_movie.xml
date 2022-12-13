@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="4dp"
+    android:padding="8dp"
     tools:context=".movies.AddEditMovieActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="2dp"
-        android:text="TextView" />
+        android:text="Movie Id" />
 
     <EditText
         android:id="@+id/movie_id_txt"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="2dp"
-        android:text="TextView" />
+        android:text="Movie Name" />
 
     <EditText
         android:id="@+id/movie_name_txt"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="2dp"
-        android:text="TextView" />
+        android:text="Series" />
 
     <Spinner
         android:id="@+id/movie_series_sp"
@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="2dp"
-        android:text="TextView" />
+        android:text="Image Url" />
 
     <EditText
         android:id="@+id/image_url_txt"
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="2dp"
-        android:text="TextView" />
+        android:text="Description" />
 
     <EditText
         android:id="@+id/movie_description_txt"
