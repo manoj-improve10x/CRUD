@@ -28,7 +28,7 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void showData() {
-        seriesIdTxt.setText(series.id);
+        seriesIdTxt.setText(series.seriesId);
         seriesNameTxt.setText(series.name);
         seriesImage.setText(series.imageUrl);
     }

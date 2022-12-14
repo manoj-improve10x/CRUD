@@ -24,7 +24,6 @@ import retrofit2.Response;
 
 public class MessagesActivity extends BaseActivity {
 
-    private CrudService crudService;
     private ArrayList<Message> messages = new ArrayList<>();
     private RecyclerView messagesRv;
     private MessagesAdapter messagesAdapter;
@@ -35,13 +34,7 @@ public class MessagesActivity extends BaseActivity {
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
         log("on Create Called");
-        setupApiService();
         setupMessageRv();
-    }
-
-    private void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
     }
 
     @Override

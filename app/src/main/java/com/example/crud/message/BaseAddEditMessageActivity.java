@@ -11,7 +11,6 @@ import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditMessageActivity extends BaseActivity {
 
-    protected CrudService crudService;
     protected EditText nameTxt;
     protected EditText NumberTxt;
     protected EditText messageTxt;
@@ -21,13 +20,7 @@ public class BaseAddEditMessageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
         log("onCreate");
-        setupApiService();
         findIds();
-    }
-
-    private void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
     }
 
     private void findIds() {

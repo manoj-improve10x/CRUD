@@ -93,7 +93,7 @@ public class MoviesActivity extends BaseActivity {
 
             @Override
             public void onEdit(Movie movie) {
-                updateMovie(movie);
+                editMovie(movie);
             }
         });
         moviesRv.setAdapter(moviesAdapter);
@@ -132,7 +132,7 @@ public class MoviesActivity extends BaseActivity {
             }
         });
     }
-    private void updateMovie(Movie movie) {
+    private void editMovie(Movie movie) {
         Intent intent = new Intent(this, EditMovieActivity.class);
         intent.putExtra(Constants.KEY_MOVIE, movie);
         startActivity(intent);
