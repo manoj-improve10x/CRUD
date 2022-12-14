@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
@@ -27,6 +29,7 @@ public class MessagesActivity extends BaseActivity {
     private ArrayList<Message> messages = new ArrayList<>();
     private RecyclerView messagesRv;
     private MessagesAdapter messagesAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class MessagesActivity extends BaseActivity {
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
         log("on Create Called");
+        findIds();
+        setupMessagesAdapter();
         setupMessageRv();
     }
 
@@ -44,19 +49,29 @@ public class MessagesActivity extends BaseActivity {
         fetchData();
     }
 
+    private void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+    }
+
     private void fetchData() {
+        showProgressBar();
         Call<List<Message>> call = crudService.fetchMessages();
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
                 messagesAdapter.setData(messages);
-
+                hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
                 showToast("failed to load data");
+                hideProgressBar();
             }
         });
     }
@@ -78,10 +93,12 @@ public class MessagesActivity extends BaseActivity {
         }
     }
 
-
-    private void setupMessageRv() {
+    private void findIds() {
+        progressBar = findViewById(R.id.messages_progressBar);
         messagesRv = findViewById(R.id.messages_rv);
-        messagesRv.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setupMessagesAdapter() {
         messagesAdapter = new MessagesAdapter();
         messagesAdapter.setData(messages);
         messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
@@ -96,6 +113,10 @@ public class MessagesActivity extends BaseActivity {
                 editMessage(message);
             }
         });
+    }
+
+    private void setupMessageRv() {
+        messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messagesRv.setAdapter(messagesAdapter);
     }
 
@@ -111,7 +132,6 @@ public class MessagesActivity extends BaseActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 showToast("failed to delete message");
-
             }
         });
     }
