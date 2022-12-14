@@ -26,11 +26,11 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends BaseActivity {
 
-    private CrudService service;
-    private ArrayList<Series> series = new ArrayList<>();
-    private RecyclerView seriesRv;
-    private SeriesAdapter seriesAdapter;
-    private ProgressBar seriesProgressbar;
+    private CrudService crudService;
+    private ArrayList<Series> seriesItems = new ArrayList<>();
+    private RecyclerView seriesItemsRv;
+    private SeriesListAdapter seriesListAdapter;
+    private ProgressBar seriesProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +39,12 @@ public class SeriesListActivity extends BaseActivity {
         getSupportActionBar().setTitle("Series");
         log("onCreate");
         setupApiService();
-        setupSeriesRv();
+        setupSeriesItemsRv();
     }
 
     private void setupApiService() {
         CrudApi api = new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
 
     @Override
@@ -54,43 +54,42 @@ public class SeriesListActivity extends BaseActivity {
         fetchSeries();
     }
 
-    private void hideProgressbar() {
-        seriesProgressbar.setVisibility(View.GONE);
+    private void hideProgressBar() {
+        seriesProgressBar.setVisibility(View.GONE);
     }
 
-    private void showProgressbar() {
-        seriesProgressbar.setVisibility(View.VISIBLE);
+    private void showProgressBar() {
+        seriesProgressBar.setVisibility(View.VISIBLE);
     }
 
 
     private void fetchSeries() {
-        showProgressbar();
-        Call<List<Series>> call = service.fetchSeries();
+        showProgressBar();
+        Call<List<Series>> call = crudService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 List<Series> series = response.body();
-                seriesAdapter.setData(series);
-                hideProgressbar();
-                showToast("Successfully loaded the series");
+                seriesListAdapter.setData(series);
+                hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
               showToast("Failed to load series");
-                hideProgressbar();
+                hideProgressBar();
             }
         });
     }
 
 
-    private void setupSeriesRv() {
-        seriesProgressbar = findViewById(R.id.series_progressbar);
-        seriesRv = findViewById(R.id.series_rv);
-        seriesRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesAdapter = new SeriesAdapter();
-        seriesAdapter.setData(series);
-        seriesAdapter.setOnItemActionListener(new OnItemActionListener() {
+    private void setupSeriesItemsRv() {
+        seriesProgressBar = findViewById(R.id.series_progressbar);
+        seriesItemsRv = findViewById(R.id.series_rv);
+        seriesItemsRv.setLayoutManager(new LinearLayoutManager(this));
+        seriesListAdapter = new SeriesListAdapter();
+        seriesListAdapter.setData(seriesItems);
+        seriesListAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Series series) {
                 editSeries(series);
@@ -102,7 +101,7 @@ public class SeriesListActivity extends BaseActivity {
                 fetchSeries();
             }
         });
-        seriesRv.setAdapter(seriesAdapter);
+        seriesItemsRv.setAdapter(seriesListAdapter);
     }
 
     @Override
@@ -113,7 +112,7 @@ public class SeriesListActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.series_add) {
+        if (item.getItemId() == R.id.add) {
             Intent intent = new Intent(this, AddSeriesActivity.class);
             startActivity(intent);
             return true;
@@ -122,7 +121,7 @@ public class SeriesListActivity extends BaseActivity {
         }
     }
     private void deleteSeries(String id) {
-        Call<Void> call = service.deleteSeries(id);
+        Call<Void> call = crudService.deleteSeries(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class MessagesActivity extends BaseActivity {
 
-    private CrudService service;
+    private CrudService crudService;
     private ArrayList<Message> messages = new ArrayList<>();
     private RecyclerView messagesRv;
     private MessagesAdapter messagesAdapter;
@@ -41,7 +41,7 @@ public class MessagesActivity extends BaseActivity {
 
     private void setupApiService() {
         CrudApi api = new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
 
     @Override
@@ -52,12 +52,11 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void fetchData() {
-        Call<List<Message>> call = service.fetchMessages();
+        Call<List<Message>> call = crudService.fetchMessages();
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 List<Message> messages = response.body();
-                showToast("successfully loaded the data");
                 messagesAdapter.setData(messages);
 
             }
@@ -77,7 +76,7 @@ public class MessagesActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.add_message_menu){
+        if(item.getItemId() == R.id.add){
             Intent intent = new Intent(this, AddMessageActivity.class);
             startActivity(intent);
             return true;
@@ -108,7 +107,7 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void deleteMessage(String id) {
-        Call<Void> call = service.deleteMessage(id);
+        Call<Void> call = crudService.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

@@ -26,10 +26,10 @@ import retrofit2.Response;
 
 public class TemplatesActivity extends BaseActivity {
 //change object name crudService in all activities
-    private CrudService service;
+    private CrudService crudService;
     private RecyclerView templatesRv;
     private ArrayList<Template> templates = new ArrayList<>();
-    private ProgressBar templatesProgressbar;
+    private ProgressBar templatesProgressBar;
     private TemplatesAdapter templatesAdapter;
 
     @Override
@@ -44,15 +44,15 @@ public class TemplatesActivity extends BaseActivity {
 
     private void setupApiService() {
         CrudApi api = new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
 
-    private void showProgressbar() {
-        templatesProgressbar.setVisibility(View.VISIBLE);
+    private void showProgressBar() {
+        templatesProgressBar.setVisibility(View.VISIBLE);
     }
 
-    private void hideProgressbar() {
-        templatesProgressbar.setVisibility(View.GONE);
+    private void hideProgressBar() {
+        templatesProgressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class TemplatesActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.template_add) {
+        if (item.getItemId() == R.id.add) {
             Intent intent = new Intent(this, AddTemplateActivity.class);
             startActivity(intent);
             return true;
@@ -76,20 +76,19 @@ public class TemplatesActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
        log("onResume");
-        fetchTemplate();
+        fetchTemplates();
 
     }
 //method name
-    private void fetchTemplate() {
-        showProgressbar();
-        Call<List<Template>> call = service.fetchTemplates();
+    private void fetchTemplates() {
+        showProgressBar();
+        Call<List<Template>> call = crudService.fetchTemplates();
         call.enqueue(new Callback<List<Template>>() {
             @Override
             public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
                 List<Template> templates = response.body();
                 templatesAdapter.setData(templates);
-                hideProgressbar();
-                showToast("Successfully loaded the data");
+                hideProgressBar();
             }
 
             @Override
@@ -100,7 +99,7 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void setupTemplatesRv() {
-        templatesProgressbar = findViewById( R.id.templates_progressbar);
+        templatesProgressBar = findViewById( R.id.templates_progressbar);
         templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templatesAdapter = new TemplatesAdapter();
@@ -109,7 +108,7 @@ public class TemplatesActivity extends BaseActivity {
             @Override
             public void onDelete(String id) {
                 deleteTemplate(id);
-                fetchTemplate();
+                fetchTemplates();
             }
 
             @Override
@@ -121,7 +120,7 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void deleteTemplate(String id) {
-        Call<Void> call =service .deleteTemplate(id);
+        Call<Void> call = crudService.deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

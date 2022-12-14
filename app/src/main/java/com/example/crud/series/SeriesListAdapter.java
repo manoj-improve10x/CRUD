@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
+public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     private List<Series> seriesList;
     private OnItemActionListener onItemActionListener;
@@ -39,7 +39,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
         if(series.imageUrl != null && series.imageUrl.isEmpty() == false) {
             Picasso.get().load(series.imageUrl).into(holder.seriesImg);
         }
-        holder.seriesDeleteBtn.setOnClickListener(view -> {
+        holder.DeleteBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(series.id);
         });
         holder.itemView.setOnClickListener(view -> {

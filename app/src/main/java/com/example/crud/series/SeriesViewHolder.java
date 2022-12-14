@@ -14,14 +14,14 @@ public class SeriesViewHolder extends RecyclerView.ViewHolder {
 
      TextView seriesNameTxt;
      //change object name
-     ImageButton seriesDeleteBtn;
+     ImageButton DeleteBtn;
      ImageView seriesImg;
 
     public SeriesViewHolder(@NonNull View itemView) {
         super(itemView);
 
         seriesNameTxt = itemView.findViewById(R.id.series_name_txt);
-        seriesDeleteBtn = itemView.findViewById(R.id.series_delete_btn);
+        DeleteBtn = itemView.findViewById(R.id.series_delete_btn);
         seriesImg = itemView.findViewById(R.id.series_img);
     }
 }

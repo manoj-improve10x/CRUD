@@ -39,7 +39,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         Movie movie = movieList.get(position);
         holder.movieNameTxt.setText(movie.movieName);
         Picasso.get().load(movie.movieImageUrl).into(holder.movieImg);
-        holder.movieDeleteBtn.setOnClickListener(view -> {
+        holder.DeleteBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(movie.id);
         });
         holder.itemView.setOnClickListener(view -> {

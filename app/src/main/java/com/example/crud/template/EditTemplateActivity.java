@@ -14,7 +14,8 @@ import retrofit2.Response;
 
 public class EditTemplateActivity extends BaseAddEditTemplateActivity{
 
-    //declare java class object class for all activities
+    private Template template;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +30,9 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         ///id name change
-        if (item.getItemId() == R.id.check_movie) {
-            String message = addTemplateTxt.getText().toString();
-                setEditTemplate(this.template.id, message);
+        if (item.getItemId() == R.id.save) {
+            String message = TemplateTxt.getText().toString();
+                updateTemplate(this.template.id, message);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
@@ -39,14 +40,14 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
     }
 
     private void showData() {
-        addTemplateTxt.setText(template.text);
+        TemplateTxt.setText(template.text);
     }
 //change method name to update template
-    private void setEditTemplate(String id, String message) {
+    private void updateTemplate(String id, String message) {
         template = new Template();
         template.text = message;
 
-        Call<Void> call = service.editTemplate(id, template);
+        Call<Void> call = crudService.editTemplate(id, template);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

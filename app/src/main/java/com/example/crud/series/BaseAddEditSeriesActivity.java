@@ -1,28 +1,20 @@
 package com.example.crud.series;
 
-import androidx.annotation.NonNull;
-
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class BaseAddEditSeriesActivity extends BaseActivity {
 
-    protected CrudService service;
+    protected CrudService crudService;
     //change ids add name Txt
-    protected EditText seriesId;
-    protected EditText seriesName;
+    protected EditText seriesIdTxt;
+    protected EditText seriesNameTxt;
     protected EditText seriesImage;
 
     @Override
@@ -36,12 +28,12 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
 
     private void setupApiService() {
         CrudApi api =new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
 
     private void findIds() {
-        seriesId = findViewById(R.id.series_id);
-        seriesName = findViewById(R.id.series_name);
+        seriesIdTxt = findViewById(R.id.series_id);
+        seriesNameTxt = findViewById(R.id.series_name);
         seriesImage = findViewById(R.id.series_image);
     }
 

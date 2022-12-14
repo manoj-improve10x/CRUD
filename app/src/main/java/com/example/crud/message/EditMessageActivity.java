@@ -14,6 +14,8 @@ import retrofit2.Response;
 
 public class EditMessageActivity extends BaseAddEditMessageActivity {
 
+    private Message message;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,32 +27,31 @@ public class EditMessageActivity extends BaseAddEditMessageActivity {
     }
 
     private void showData() {
-        addNameTxt.setText(message.name);
-        addNumberTxt.setText(message.number);
-        addMessageTxt.setText(message.messageText);
+        nameTxt.setText(message.name);
+        NumberTxt.setText(message.number);
+        messageTxt.setText(message.messageText);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.add_message) {
-            String name = addNameTxt.getText().toString();
-            String number = addNumberTxt.getText().toString();
-            String message =addMessageTxt.getText().toString();
-                setEditMessage(this.message.id, name, number, message);
+        if (item.getItemId() == R.id.save) {
+            String name = nameTxt.getText().toString();
+            String number = NumberTxt.getText().toString();
+            String message = messageTxt.getText().toString();
+                EditMessage(this.message.id, name, number, message);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
         }
     }
-//methode name
-    //use constrector
-    private void setEditMessage(String id, String name, String number, String message) {
+
+    private void EditMessage(String id, String name, String number, String message) {
         this.message = new Message();
         this.message.name = name;
         this.message.number = number;
         this.message.messageText = message;
 
-        Call<Void> call = service.editMessage(id, this.message);
+        Call<Void> call = crudService.editMessage(id, this.message);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

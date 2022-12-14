@@ -21,24 +21,24 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.add_message) {
-            String name = addNameTxt.getText().toString();
-            String number = addNumberTxt.getText().toString();
-            String message =addMessageTxt.getText().toString();
-                setAddMessage(name,number,message);
+        if (item.getItemId() == R.id.save) {
+            String name = nameTxt.getText().toString();
+            String number = NumberTxt.getText().toString();
+            String message = messageTxt.getText().toString();
+                addMessage(name,number,message);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
         }
     }
-//change to method name add message
-    private void setAddMessage(String name, String number, String message) {
-        this.message = new Message();
-        this.message.name = name;
-        this.message.messageText = message;
-        this.message.number = number;
 
-        Call<Message> call = service.createMessage(this.message);
+    private void addMessage(String name, String number, String messageTxt) {
+        Message message = new Message();
+        message.name = name;
+        message.messageText = messageTxt;
+        message.number = number;
+
+        Call<Message> call = crudService.createMessage(message);
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {

@@ -23,7 +23,7 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //change id  to save
-        if(item.getItemId() == R.id.check_movie){
+        if(item.getItemId() == R.id.save){
             String movieName = movieNameTxt.getText().toString();
             String movieId = movieIdTxt.getText().toString();
             Series series = (Series) seriesSp.getSelectedItem();
@@ -45,7 +45,7 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
         movie.description = description;
         movie.seriesId = seriesId;
 
-        Call<Movie> call = service.createMovie(movie);
+        Call<Movie> call = crudService.createMovie(movie);
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {

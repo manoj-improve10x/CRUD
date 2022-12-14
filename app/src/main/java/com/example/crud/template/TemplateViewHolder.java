@@ -13,11 +13,11 @@ public class TemplateViewHolder extends RecyclerView.ViewHolder {
 
      TextView textTxt;
      //name change
-     ImageButton deleteTemplateBtn;
+     ImageButton deleteBtn;
 
     public TemplateViewHolder(@NonNull View itemView) {
         super(itemView);
         textTxt = itemView.findViewById(R.id.text_txt);
-        deleteTemplateBtn = itemView.findViewById(R.id.delete_template_btn);
+        deleteBtn = itemView.findViewById(R.id.delete_btn);
     }
 }

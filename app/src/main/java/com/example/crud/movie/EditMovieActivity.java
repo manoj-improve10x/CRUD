@@ -28,21 +28,21 @@ public class EditMovieActivity extends BaseAddEditMovieActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //change id to save
-        if(item.getItemId() == R.id.check_movie){
+        if(item.getItemId() == R.id.save){
             String movieName = movieNameTxt.getText().toString();
             String movieId = movieIdTxt.getText().toString();
             Series series = (Series) seriesSp.getSelectedItem();
             String seriesId = series.seriesId;
             String imagesUrl = imageUrlTxt.getText().toString();
             String description = movieDescriptionTxt.getText().toString();
-                editMovie(movie.id, movieName, movieId, seriesId, imagesUrl, description);
+                updateMovie(movie.id, movieName, movieId, seriesId, imagesUrl, description);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
         }
     }
 //name change
-    private void editMovie(String id, String movieId, String seriesId, String name, String imagesUrl, String description) {
+    private void updateMovie(String id, String movieId, String seriesId, String name, String imagesUrl, String description) {
         movie = new Movie();
         movie.movieName = name;
         movie.movieId = movieId;
@@ -50,7 +50,7 @@ public class EditMovieActivity extends BaseAddEditMovieActivity {
         movie.description = description;
         movie.seriesId = seriesId;
 
-        Call<Void> call = service.editMovie(id, movie);
+        Call<Void> call = crudService.editMovie(id, movie);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

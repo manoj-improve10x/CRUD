@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
 
-    protected CrudService service;
+    protected CrudService crudService;
     protected CustomSeriesAdapter customSeriesAdapter;
     protected ArrayList<Series> seriesList = new ArrayList<>();
     protected Spinner seriesSp;
@@ -29,7 +29,6 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected EditText movieIdTxt;
     protected EditText imageUrlTxt;
     protected EditText movieDescriptionTxt;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +39,6 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         findIds();
         setupSeriesListSp();
         fetchSeriesList();
-
-
-
     }
 
     @Override
@@ -54,7 +50,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     private void setupApiService() {
         CrudApi api = new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
 
     protected void showData() {
@@ -84,7 +80,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void fetchSeriesList() {
-        Call<List<Series>> call = service.fetchSeries();
+        Call<List<Series>> call = crudService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {

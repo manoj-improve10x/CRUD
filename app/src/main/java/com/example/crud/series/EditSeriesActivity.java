@@ -28,32 +28,32 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void showData() {
-        seriesId.setText(series.id);
-        seriesName.setText(series.name);
+        seriesIdTxt.setText(series.id);
+        seriesNameTxt.setText(series.name);
         seriesImage.setText(series.imageUrl);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //change name id
-        if (item.getItemId() == R.id.check) {
-            String id = seriesId.getText().toString();
-            String name = seriesName.getText().toString();
+        if (item.getItemId() == R.id.save) {
+            String id = seriesIdTxt.getText().toString();
+            String name = seriesNameTxt.getText().toString();
             String imageUrl = seriesImage.getText().toString();
-            setEditSeries(id, name, imageUrl);
+            EditSeries(id, name, imageUrl);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 //change method name
-    private void setEditSeries(String id, String name, String imageUrl) {
+    private void EditSeries(String id, String name, String imageUrl) {
         series = new Series();
         series.seriesId = id;
         series.name = name;
         series.imageUrl = imageUrl;
 
-        Call<Void> call = service.editSeries(id,series);
+        Call<Void> call = crudService.editSeries(id,series);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

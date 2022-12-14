@@ -11,12 +11,10 @@ import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditMessageActivity extends BaseActivity {
 
-    protected CrudService service;
-    protected Message message;
-    //change object name nameTxt
-    protected EditText addNameTxt;
-    protected EditText addNumberTxt;
-    protected EditText addMessageTxt;
+    protected CrudService crudService;
+    protected EditText nameTxt;
+    protected EditText NumberTxt;
+    protected EditText messageTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +27,13 @@ public class BaseAddEditMessageActivity extends BaseActivity {
 
     private void setupApiService() {
         CrudApi api = new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
-//change id names
+
     private void findIds() {
-        addNameTxt = findViewById(R.id.add_name_txt);
-        addNumberTxt = findViewById(R.id.add_number_txt);
-        addMessageTxt = findViewById(R.id.add_message_txt);
+        nameTxt = findViewById(R.id.name_txt);
+        NumberTxt = findViewById(R.id.number_txt);
+        messageTxt = findViewById(R.id.message_txt);
     }
 
     @Override

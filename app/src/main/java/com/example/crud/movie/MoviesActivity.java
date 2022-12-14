@@ -28,9 +28,9 @@ public class MoviesActivity extends BaseActivity {
 
     private ArrayList<Movie> movies = new ArrayList<>();
     private RecyclerView moviesRv;
-    private ProgressBar moviesProgressbar;
+    private ProgressBar moviesProgressBar;
     private MoviesAdapter moviesAdapter;
-    private CrudService service;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MoviesActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.movie_add) {
+        if (item.getItemId() == R.id.add) {
             Intent intent = new Intent(this, AddMovieActivity.class);
             startActivity(intent);
             return true;
@@ -68,19 +68,19 @@ public class MoviesActivity extends BaseActivity {
 
     private void setupApiService() {
         CrudApi api = new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
 
-    private void showProgressbar() {
-        moviesProgressbar.setVisibility(View.VISIBLE);
+    private void showProgressBar() {
+        moviesProgressBar.setVisibility(View.VISIBLE);
     }
 
-    private void hideProgressbar() {
-        moviesProgressbar.setVisibility(View.GONE);
+    private void hideProgressBar() {
+        moviesProgressBar.setVisibility(View.GONE);
     }
 
     private void setupMoviesRv() {
-        moviesProgressbar = findViewById(R.id.movies_progressbar);
+        moviesProgressBar = findViewById(R.id.movies_progressbar);
         moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesAdapter = new MoviesAdapter();
@@ -93,32 +93,32 @@ public class MoviesActivity extends BaseActivity {
 
             @Override
             public void onEdit(Movie movie) {
-                editMovie(movie);
+                updateMovie(movie);
             }
         });
         moviesRv.setAdapter(moviesAdapter);
     }
 
     private void fetchMovies() {
-        showProgressbar();
-        Call<List<Movie>> call = service.fetchMovies();
+        showProgressBar();
+        Call<List<Movie>> call = crudService.fetchMovies();
         call.enqueue(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
                 List<Movie> movies = response.body();
                 moviesAdapter.setData(movies);
-                hideProgressbar();
-                showToast("Successfully loaded the movies");
+                hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
                 showToast("Failed to load movies");
+                hideProgressBar();
             }
         });
     }
     private void deleteMovie(String id) {
-        Call<Void> call = service.deleteMovie(id);
+        Call<Void> call = crudService.deleteMovie(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -132,7 +132,7 @@ public class MoviesActivity extends BaseActivity {
             }
         });
     }
-    private void editMovie(Movie movie) {
+    private void updateMovie(Movie movie) {
         Intent intent = new Intent(this, EditMovieActivity.class);
         intent.putExtra(Constants.KEY_MOVIE, movie);
         startActivity(intent);

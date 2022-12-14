@@ -22,23 +22,23 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //change
-        if (item.getItemId() == R.id.check) {
-            String id = seriesId.getText().toString();
-            String name = seriesName.getText().toString();
+        if (item.getItemId() == R.id.save) {
+            String id = seriesIdTxt.getText().toString();
+            String name = seriesNameTxt.getText().toString();
             String imageUrl = seriesImage.getText().toString();
-                setAddSeries(name, id , imageUrl);
+                AddSeries(name, id , imageUrl);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void setAddSeries(String name,String id, String imageUrl) {
+    private void AddSeries(String name, String id, String imageUrl) {
         Series series = new Series();
         series.seriesId = id;
         series.name = name;
         series.imageUrl = imageUrl;
-        Call<Series> call = service.createSeries(series);
+        Call<Series> call = crudService.createSeries(series);
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {

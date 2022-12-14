@@ -22,19 +22,19 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // id change
-        if (item.getItemId() == R.id.check_movie) {
-            String message = addTemplateTxt.getText().toString();
-                setAddTemplate(message);
+        if (item.getItemId() == R.id.save) {
+            String message = TemplateTxt.getText().toString();
+                AddTemplate(message);
             return true;
         }else {
             return super.onOptionsItemSelected(item);
         }
     }
 // change methode name
-    private void setAddTemplate(String message) {
-        template = new Template();
+    private void AddTemplate(String message) {
+        Template template = new Template();
         template.text = message;
-        Call<Template> call = service.createTemplate(template);
+        Call<Template> call = crudService.createTemplate(template);
         call.enqueue(new Callback<Template>() {
             @Override
             public void onResponse(Call<Template> call, Response<Template> response) {

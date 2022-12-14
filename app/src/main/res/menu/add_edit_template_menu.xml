@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/check_movie"
+        android:id="@+id/save"
         android:icon="@drawable/ic_baseline_check_24"
-        android:title="add"
+        android:title="save"
         android:visible="true"
         app:showAsAction="always" />
 </menu>

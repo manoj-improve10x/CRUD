@@ -11,10 +11,9 @@ import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditTemplateActivity extends BaseActivity {
 
-    protected CrudService service;
+    protected CrudService crudService;
     //change object name templateTxt
-    protected EditText addTemplateTxt;
-    protected Template template;
+    protected EditText TemplateTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +21,12 @@ public class BaseAddEditTemplateActivity extends BaseActivity {
         setContentView(R.layout.activity_add_edit_template);
         setupApiService();
         log("onCreate");
-        addTemplateTxt = findViewById(R.id.add_template_txt);
+        TemplateTxt = findViewById(R.id.add_template_txt);
     }
 
     protected void setupApiService() {
         CrudApi api = new CrudApi();
-        service = api.createCrudService();
+        crudService = api.createCrudService();
     }
 
     @Override
