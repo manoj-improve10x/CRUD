@@ -13,8 +13,6 @@ import android.widget.ProgressBar;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ public class MessagesActivity extends BaseActivity {
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
         log("on Create Called");
-        findIds();
+        initViews();
         setupMessagesAdapter();
         setupMessageRv();
     }
@@ -95,7 +93,7 @@ public class MessagesActivity extends BaseActivity {
     }
 
     //Todo: Declare ids method name as equal to all classes
-    private void findIds() {
+    private void initViews() {
         progressBar = findViewById(R.id.messages_progressBar);
         messagesRv = findViewById(R.id.messages_rv);
     }

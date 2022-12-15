@@ -29,7 +29,6 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         if (item.getItemId() == R.id.save) {
             String message = TemplateTxt.getText().toString();
             updateTemplate(this.template.id, message);

@@ -36,7 +36,7 @@ public class TemplatesActivity extends BaseActivity {
         log("onCreate");
         //Todo: first create title in the onCreate
         getSupportActionBar().setTitle("Templates");
-        findIds();
+        initViews();
         setupTemplatesAdapter();
         setupTemplatesRv();
     }
@@ -92,7 +92,7 @@ public class TemplatesActivity extends BaseActivity {
         });
     }
 
-    private void findIds() {
+    private void initViews() {
         progressBar = findViewById(R.id.templates_progressbar);
         templatesRv = findViewById(R.id.templates_rv);
     }

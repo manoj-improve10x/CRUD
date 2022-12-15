@@ -38,6 +38,7 @@ public class MoviesActivity extends BaseActivity {
         setContentView(R.layout.activity_movie_list);
         getSupportActionBar().setTitle("Movies");
         log("onCreate");
+        initViews();
         setupApiService();
         setupMoviesRv();
     }
@@ -79,9 +80,12 @@ public class MoviesActivity extends BaseActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-    private void setupMoviesRv() {
+    private void initViews() {
         progressBar = findViewById(R.id.progress_bar);
         moviesRv = findViewById(R.id.movies_rv);
+    }
+
+    private void setupMoviesRv() {
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesAdapter = new MoviesAdapter();
         moviesAdapter.setData(movies);

@@ -18,7 +18,10 @@ public class BaseAddEditTemplateActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_template);
         log("onCreate");
+        initViews();
+    }
 
+    private void initViews() {
         TemplateTxt = findViewById(R.id.add_template_txt);
     }
 

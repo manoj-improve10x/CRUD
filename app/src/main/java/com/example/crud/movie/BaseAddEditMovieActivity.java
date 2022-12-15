@@ -38,7 +38,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         setContentView(R.layout.activity_add_edit_movie);
         log("on create");
         setupApiService();
-        findIds();
+        initViews();
         setupSeriesListSp();
         fetchSeriesList();
     }
@@ -74,7 +74,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         seriesSp.setAdapter(customSeriesAdapter);
     }
 
-    private void findIds() {
+    private void initViews() {
         seriesSp = findViewById(R.id.movie_series_sp);
         movieNameTxt = findViewById(R.id.movie_name_txt);
         movieIdTxt = findViewById(R.id.movie_id_txt);

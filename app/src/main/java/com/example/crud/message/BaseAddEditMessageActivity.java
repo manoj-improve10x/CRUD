@@ -5,8 +5,6 @@ import android.view.Menu;
 import android.widget.EditText;
 
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditMessageActivity extends BaseActivity {
@@ -20,10 +18,10 @@ public class BaseAddEditMessageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
         log("onCreate");
-        findIds();
+        initViews();
     }
 
-    private void findIds() {
+    private void initViews() {
         //ToDo: change object name phoneNumberTxt
         nameTxt = findViewById(R.id.name_txt);
         NumberTxt = findViewById(R.id.number_txt);
