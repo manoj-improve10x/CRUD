@@ -64,15 +64,15 @@ public class MessagesActivity extends BaseActivity {
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                hideProgressBar();
                 List<Message> messages = response.body();
                 messagesAdapter.setData(messages);
-                hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
-                showToast("failed to load data");
                 hideProgressBar();
+                showToast("failed to load data");
             }
         });
     }
@@ -124,16 +124,19 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void deleteMessage(String id) {
+        showProgressBar();
         Call<Void> call = crudService.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                hideProgressBar();
                 showToast("successfully deleted the message");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                hideProgressBar();
                 showToast("failed to delete message");
             }
         });

@@ -28,7 +28,7 @@ public class MoviesActivity extends BaseActivity {
 
     private ArrayList<Movie> movies = new ArrayList<>();
     private RecyclerView moviesRv;
-    private ProgressBar moviesProgressBar;
+    private ProgressBar progressBar;
     private MoviesAdapter moviesAdapter;
     private CrudService crudService;
 
@@ -72,15 +72,15 @@ public class MoviesActivity extends BaseActivity {
     }
 
     private void showProgressBar() {
-        moviesProgressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        moviesProgressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void setupMoviesRv() {
-        moviesProgressBar = findViewById(R.id.movies_progressbar);
+        progressBar = findViewById(R.id.progress_bar);
         moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesAdapter = new MoviesAdapter();
@@ -105,30 +105,33 @@ public class MoviesActivity extends BaseActivity {
         call.enqueue(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+                hideProgressBar();
                 List<Movie> movies = response.body();
                 moviesAdapter.setData(movies);
-                hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
-                showToast("Failed to load movies");
                 hideProgressBar();
+                showToast("Failed to load movies");
             }
         });
     }
 
     private void deleteMovie(String id) {
+        showProgressBar();
         Call<Void> call = crudService.deleteMovie(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                hideProgressBar();
                 fetchMovies();
                 showToast("Successfully deleted the movie");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                hideProgressBar();
                 showToast("Failed to delete movie");
             }
         });
