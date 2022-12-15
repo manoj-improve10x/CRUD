@@ -22,8 +22,8 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHol
     private ArrayList<DashboardItem> dashboardItems;
 
     //Todo: DashboardItemAdapter-change parameter name dashboardItems
-    void setData(ArrayList<DashboardItem> dashboardItemList) {
-        dashboardItems = dashboardItemList;
+    void setData(ArrayList<DashboardItem> dashboardItems) {
+        this.dashboardItems = dashboardItems;
         notifyDataSetChanged();
     }
 
