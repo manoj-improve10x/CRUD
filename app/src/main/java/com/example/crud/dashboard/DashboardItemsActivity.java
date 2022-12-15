@@ -10,7 +10,7 @@ import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 
-public class DashboardActivity extends BaseActivity {
+public class DashboardItemsActivity extends BaseActivity {
     //Todo: change class name to DashboardItemsActivity
     private ArrayList<DashboardItem> dashboardItemItems;
 
