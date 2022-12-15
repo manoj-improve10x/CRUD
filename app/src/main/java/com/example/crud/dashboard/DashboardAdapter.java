@@ -19,12 +19,12 @@ import java.util.ArrayList;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> {
 
-    private ArrayList<Dashboard> dashboardItems;
+    private ArrayList<DashboardItem> dashboardItems;
 
     //Todo: remove public  specifier in setData method in all adapter classes
     //Todo: DashboardItemAdapter-change parameter name dashboardItems
-    public void setData(ArrayList<Dashboard> dashboardList) {
-        dashboardItems = dashboardList;
+    public void setData(ArrayList<DashboardItem> dashboardItemList) {
+        dashboardItems = dashboardItemList;
         notifyDataSetChanged();
     }
 
@@ -38,9 +38,9 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull DashboardViewHolder holder, int position) {
-        Dashboard dashboard = dashboardItems.get(position);
-        holder.dashBoardTitleTxt.setText(dashboard.title);
-        Picasso.get().load(dashboard.imageUrl).into(holder.dashBoardImage);
+        DashboardItem dashboardItem = dashboardItems.get(position);
+        holder.dashBoardTitleTxt.setText(dashboardItem.title);
+        Picasso.get().load(dashboardItem.imageUrl).into(holder.dashBoardImage);
         holder.itemView.setOnClickListener(view -> {
             if (holder.dashBoardTitleTxt.getText().toString().equalsIgnoreCase("Messages")) {
                 Intent intent = new Intent(holder.dashBoardTitleTxt.getContext(), MessagesActivity.class);

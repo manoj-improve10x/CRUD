@@ -1,7 +1,7 @@
 package com.example.crud.dashboard;
 
-public class Dashboard {
-    //ToDo: Change Class name to DashboardItem
+public class DashboardItem {
+
     String title;
     String imageUrl;
 }
