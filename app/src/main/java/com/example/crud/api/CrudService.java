@@ -47,7 +47,7 @@ public interface CrudService {
     @GET(Constants.SERIES_END_POINT)
     Call<List<Series>> fetchSeriesList();
 
-    //ToDo: change name createSeriesItem
+    //ToDo: CrudServiceInterface: change name createSeriesItem
     @POST(Constants.SERIES_END_POINT)
     Call<Series> createSeries(@Body Series series);
 

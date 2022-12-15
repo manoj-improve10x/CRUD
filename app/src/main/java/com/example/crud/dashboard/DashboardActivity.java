@@ -11,11 +11,11 @@ import com.example.crud.base.BaseActivity;
 import java.util.ArrayList;
 
 public class DashboardActivity extends BaseActivity {
-    //Todo: change class name DashboardItemsActivity
+    //Todo: change class name to DashboardItemsActivity
     private ArrayList<Dashboard> dashboardItems;
 
     private RecyclerView dashboardItemsRv;
-    //Todo: change DashboardAdapter
+    //Todo: change DashboardAdapter name
     private DashboardAdapter dashboardAdapter;
 
     @Override
@@ -28,11 +28,11 @@ public class DashboardActivity extends BaseActivity {
         setupDashboardItemsRv();
     }
 
-    //ToDo: Implement progressBar
+    //ToDo: Implement progressBar in all activities
     private void setupData() {
         dashboardItems = new ArrayList<>();
 
-        //Todo:change objectNames
+        //Todo: DashboardItemsActivity-change objectNames
         Dashboard dashboard1 = new Dashboard();
         dashboard1.imageUrl = "https://e7.pngegg.com/pngimages/169/794/png-clipart-ios-message-icon-iphone-message-computer-icons-text-messaging-messenger-electronics-grass.png";
         dashboard1.title = "Messages";
@@ -50,7 +50,7 @@ public class DashboardActivity extends BaseActivity {
         dashboard4.imageUrl = "https://www.google.com/search?rlz=1C1JJTC_enIN1022IN1022&sxsrf=ALiCzsZuPMiIe7SloM6SUgGMo5LJTYASog:1670913223759&q=movie+folder+png&tbm=isch&sa=X&ved=2ahUKEwiD-pvp_PX7AhVwH7cAHUFeAEcQ0pQJegQIDBAB&biw=1536&bih=746&dpr=1.25#imgrc=oXmHMYeeUnfyoM";
         dashboardItems.add(dashboard4);
     }
-//Todo: Create new new Method for ids in all classes give proper name
+//Todo: Create new Method for ids in all classes give proper name
 
     private void setupDashboardItemsRv() {
         dashboardItemsRv = findViewById(R.id.dash_board_rv);
