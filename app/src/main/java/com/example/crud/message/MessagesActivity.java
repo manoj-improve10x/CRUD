@@ -69,7 +69,6 @@ public class MessagesActivity extends BaseActivity {
                 hideProgressBar();
             }
 
-            //ToDo: declare first in the onResponse progressBar
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
                 showToast("failed to load data");
