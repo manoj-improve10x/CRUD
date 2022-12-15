@@ -20,7 +20,7 @@ public class TemplatesAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
         onItemActionListener = actionListener;
     }
 
-    public void setData(List<Template> templateList) {
+    void setData(List<Template> templateList) {
         templates = templateList;
         notifyDataSetChanged();
     }

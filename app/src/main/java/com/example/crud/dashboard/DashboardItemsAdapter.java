@@ -23,7 +23,7 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHol
 
     //Todo: remove public  specifier in setData method in all adapter classes
     //Todo: DashboardItemAdapter-change parameter name dashboardItems
-    public void setData(ArrayList<DashboardItem> dashboardItemList) {
+    void setData(ArrayList<DashboardItem> dashboardItemList) {
         dashboardItems = dashboardItemList;
         notifyDataSetChanged();
     }
