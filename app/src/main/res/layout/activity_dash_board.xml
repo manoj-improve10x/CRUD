@@ -8,7 +8,7 @@
     tools:context=".dashboardItem.DashboardActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dash_board_rv"
+        android:id="@+id/dashboard_items_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

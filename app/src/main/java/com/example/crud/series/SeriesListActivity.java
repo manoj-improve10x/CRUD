@@ -37,6 +37,7 @@ public class SeriesListActivity extends BaseActivity {
         setContentView(R.layout.activity_series);
         getSupportActionBar().setTitle("Series");
         log("onCreate");
+        initViews();
         setupApiService();
         setupSeriesItemsRv();
     }
@@ -81,10 +82,12 @@ public class SeriesListActivity extends BaseActivity {
         });
     }
 
+    private void initViews() {
+        progressBar = findViewById(R.id.progress_bar);
+        seriesItemsRv = findViewById(R.id.series_items_rv);
+    }
 
     private void setupSeriesItemsRv() {
-        progressBar = findViewById(R.id.series_progressbar);
-        seriesItemsRv = findViewById(R.id.series_rv);
         seriesItemsRv.setLayoutManager(new LinearLayoutManager(this));
         seriesListAdapter = new SeriesListAdapter();
         seriesListAdapter.setData(seriesItems);

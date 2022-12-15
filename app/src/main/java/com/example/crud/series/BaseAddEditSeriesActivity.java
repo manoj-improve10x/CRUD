@@ -23,7 +23,7 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
         setContentView(R.layout.activity_add_edit_series);
         log("onCreate");
         setupApiService();
-        findIds();
+        initViews();
     }
 
     private void setupApiService() {
@@ -31,9 +31,9 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
         crudService = api.createCrudService();
     }
 
-    private void findIds() {
-        seriesIdTxt = findViewById(R.id.series_id);
-        seriesNameTxt = findViewById(R.id.series_name);
+    private void initViews() {
+        seriesIdTxt = findViewById(R.id.series_id_txt);
+        seriesNameTxt = findViewById(R.id.series_name_txt);
         seriesImage = findViewById(R.id.series_image);
     }
 
