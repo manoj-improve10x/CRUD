@@ -47,7 +47,7 @@ public class DashboardItemsActivity extends BaseActivity {
         seriesItems.imageUrl = "https://www.google.com/search?rlz=1C1JJTC_enIN1022IN1022&sxsrf=ALiCzsZuPMiIe7SloM6SUgGMo5LJTYASog:1670913223759&q=movie+folder+png&tbm=isch&sa=X&ved=2ahUKEwiD-pvp_PX7AhVwH7cAHUFeAEcQ0pQJegQIDBAB&biw=1536&bih=746&dpr=1.25#imgrc=oXmHMYeeUnfyoM";
         dashboardItems.add(seriesItems);
     }
-//Todo: Create new Method for ids in all classes give proper name
+
     private void initViews() {
         dashboardItemsRv = findViewById(R.id.dashboard_items_rv);
     }

@@ -17,7 +17,7 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
     private List<Series> seriesList;
     private OnItemActionListener onItemActionListener;
 
-    public void setOnItemActionListener(OnItemActionListener actionListener) {
+    void setOnItemActionListener(OnItemActionListener actionListener) {
         onItemActionListener = actionListener;
     }
 

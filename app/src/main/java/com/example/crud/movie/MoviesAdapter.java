@@ -17,7 +17,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     private List<Movie> movieList;
     private OnItemActionListener onItemActionListener;
 
-    public void setData(List<Movie> movieList) {
+    void setData(List<Movie> movieList) {
         this.movieList = movieList;
         notifyDataSetChanged();
     }

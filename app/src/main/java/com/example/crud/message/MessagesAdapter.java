@@ -24,7 +24,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     }
 
     //ToDo: change public specifier to default specifier in all adapter classes
-    public void setOnItemActionListener(OnItemActionListener actionListener) {
+    void setOnItemActionListener(OnItemActionListener actionListener) {
         onItemActionListener = actionListener;
     }
 
