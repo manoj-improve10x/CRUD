@@ -24,8 +24,10 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     }
 
     private void findIds() {
+        //ToDo: change object name phoneNumberTxt
         nameTxt = findViewById(R.id.name_txt);
         NumberTxt = findViewById(R.id.number_txt);
+        //ToDo: change name messageTextTxt
         messageTxt = findViewById(R.id.message_txt);
     }
 

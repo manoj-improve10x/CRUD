@@ -9,10 +9,10 @@ import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
+//ToDo: add item word
 public class BaseAddEditSeriesActivity extends BaseActivity {
 
     protected CrudService crudService;
-    //change ids add name Txt
     protected EditText seriesIdTxt;
     protected EditText seriesNameTxt;
     protected EditText seriesImage;
@@ -24,10 +24,10 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
         log("onCreate");
         setupApiService();
         findIds();
-        }
+    }
 
     private void setupApiService() {
-        CrudApi api =new CrudApi();
+        CrudApi api = new CrudApi();
         crudService = api.createCrudService();
     }
 

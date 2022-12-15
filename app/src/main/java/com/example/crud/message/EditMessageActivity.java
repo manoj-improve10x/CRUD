@@ -20,6 +20,7 @@ public class EditMessageActivity extends BaseAddEditMessageActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
+            //Todo: Declare title before If Condition in all EditFunctionalityActivity Classes
             message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
             getSupportActionBar().setTitle("Edit Message");
             showData();
@@ -38,9 +39,9 @@ public class EditMessageActivity extends BaseAddEditMessageActivity {
             String name = nameTxt.getText().toString();
             String number = NumberTxt.getText().toString();
             String message = messageTxt.getText().toString();
-                EditMessage(this.message.id, name, number, message);
+            EditMessage(this.message.id, name, number, message);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }

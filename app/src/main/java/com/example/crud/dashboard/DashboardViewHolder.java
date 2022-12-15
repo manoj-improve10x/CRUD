@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
 
+//ToDo: change class name DashboardItemViewHolder
 public class DashboardViewHolder extends RecyclerView.ViewHolder {
-//object names change
-     TextView dashBoardTitleTxt;
-     ImageView dashBoardImage;
+    //Todo: change object names titleTxt, DashboardImg
+    TextView dashBoardTitleTxt;
+    ImageView dashBoardImage;
 
     public DashboardViewHolder(@NonNull View itemView) {
         super(itemView);

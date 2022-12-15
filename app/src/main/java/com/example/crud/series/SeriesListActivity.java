@@ -14,7 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -26,11 +25,11 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends BaseActivity {
 
-    private CrudService crudService;
     private ArrayList<Series> seriesItems = new ArrayList<>();
     private RecyclerView seriesItemsRv;
+    //Todo: change SeriesItemsAdapter
     private SeriesListAdapter seriesListAdapter;
-    private ProgressBar seriesProgressBar;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +49,16 @@ public class SeriesListActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       log("onResume");
+        log("onResume");
         fetchSeries();
     }
 
     private void hideProgressBar() {
-        seriesProgressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void showProgressBar() {
-        seriesProgressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
 
@@ -76,7 +75,7 @@ public class SeriesListActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-              showToast("Failed to load series");
+                showToast("Failed to load series");
                 hideProgressBar();
             }
         });
@@ -84,7 +83,7 @@ public class SeriesListActivity extends BaseActivity {
 
 
     private void setupSeriesItemsRv() {
-        seriesProgressBar = findViewById(R.id.series_progressbar);
+        progressBar = findViewById(R.id.series_progressbar);
         seriesItemsRv = findViewById(R.id.series_rv);
         seriesItemsRv.setLayoutManager(new LinearLayoutManager(this));
         seriesListAdapter = new SeriesListAdapter();
@@ -116,10 +115,11 @@ public class SeriesListActivity extends BaseActivity {
             Intent intent = new Intent(this, AddSeriesActivity.class);
             startActivity(intent);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
+
     private void deleteSeries(String id) {
         Call<Void> call = crudService.deleteSeries(id);
         call.enqueue(new Callback<Void>() {

@@ -8,7 +8,5 @@ public class Template implements Serializable {
 
     @SerializedName("_id")
     public String id;
-
-    @SerializedName("messageText")
-    public String text;
+    public String messageText;
 }

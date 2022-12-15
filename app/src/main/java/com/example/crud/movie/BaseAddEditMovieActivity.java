@@ -19,9 +19,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
-
+    //Todo: remove CrudService in all activities
     protected CrudService crudService;
+    //ToDo:  change class name CustomSeriesItemsAdapter
     protected CustomSeriesAdapter customSeriesAdapter;
+    //ToDo: change object to seriesItems
     protected ArrayList<Series> seriesList = new ArrayList<>();
     protected Spinner seriesSp;
     protected Movie movie;
@@ -47,7 +49,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         return true;
     }
 
-
+    //ToDo: remove setupApiService method in all classes
     private void setupApiService() {
         CrudApi api = new CrudApi();
         crudService = api.createCrudService();
@@ -58,14 +60,15 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         movieIdTxt.setText(movie.movieId);
         imageUrlTxt.setText(movie.movieImageUrl);
         movieDescriptionTxt.setText(movie.description);
-        for (int i= 0; i < customSeriesAdapter.getCount(); i++) {
+        for (int i = 0; i < customSeriesAdapter.getCount(); i++) {
             Series series = customSeriesAdapter.getItem(i);
-            if(movie.seriesId.equals(series.seriesId)){
+            if (movie.seriesId.equals(series.seriesId)) {
                 seriesSp.setSelection(i);
             }
         }
     }
 
+    //Todo: change method name setupSeriesItemsSp
     private void setupSeriesListSp() {
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesAdapter);
@@ -79,6 +82,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         movieDescriptionTxt = findViewById(R.id.movie_description_txt);
     }
 
+    //ToDo: change method name fetchSeriesItems
     private void fetchSeriesList() {
         Call<List<Series>> call = crudService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {

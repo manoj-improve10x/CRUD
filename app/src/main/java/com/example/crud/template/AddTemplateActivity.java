@@ -11,7 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddTemplateActivity extends BaseAddEditTemplateActivity{
+public class AddTemplateActivity extends BaseAddEditTemplateActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +21,19 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        // id change
         if (item.getItemId() == R.id.save) {
             String message = TemplateTxt.getText().toString();
-                AddTemplate(message);
+            AddTemplate(message);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
-// change methode name
+
+    //Todo: change method proper
     private void AddTemplate(String message) {
         Template template = new Template();
-        template.text = message;
+        template.messageText = message;
         Call<Template> call = crudService.createTemplate(template);
         call.enqueue(new Callback<Template>() {
             @Override

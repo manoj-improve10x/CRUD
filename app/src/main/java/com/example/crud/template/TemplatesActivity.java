@@ -13,8 +13,6 @@ import android.widget.ProgressBar;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -25,34 +23,30 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TemplatesActivity extends BaseActivity {
-//change object name crudService in all activities
-    private CrudService crudService;
+
     private RecyclerView templatesRv;
     private ArrayList<Template> templates = new ArrayList<>();
-    private ProgressBar templatesProgressBar;
+    private ProgressBar progressBar;
     private TemplatesAdapter templatesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
-        setupApiService();
         log("onCreate");
+        //Todo: first create title in the onCreate
         getSupportActionBar().setTitle("Templates");
+        findIds();
+        setupTemplatesAdapter();
         setupTemplatesRv();
     }
 
-    private void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
-    }
-
     private void showProgressBar() {
-        templatesProgressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        templatesProgressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -67,7 +61,7 @@ public class TemplatesActivity extends BaseActivity {
             Intent intent = new Intent(this, AddTemplateActivity.class);
             startActivity(intent);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
@@ -75,11 +69,10 @@ public class TemplatesActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       log("onResume");
+        log("onResume");
         fetchTemplates();
-
     }
-//method name
+
     private void fetchTemplates() {
         showProgressBar();
         Call<List<Template>> call = crudService.fetchTemplates();
@@ -94,14 +87,17 @@ public class TemplatesActivity extends BaseActivity {
             @Override
             public void onFailure(Call<List<Template>> call, Throwable t) {
                 showToast("Failed to load data");
+                hideProgressBar();
             }
         });
     }
 
-    private void setupTemplatesRv() {
-        templatesProgressBar = findViewById( R.id.templates_progressbar);
+    private void findIds() {
+        progressBar = findViewById(R.id.templates_progressbar);
         templatesRv = findViewById(R.id.templates_rv);
-        templatesRv.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setupTemplatesAdapter() {
         templatesAdapter = new TemplatesAdapter();
         templatesAdapter.setData(templates);
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
@@ -116,6 +112,10 @@ public class TemplatesActivity extends BaseActivity {
                 editTemplate(template);
             }
         });
+    }
+
+    private void setupTemplatesRv() {
+        templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templatesRv.setAdapter(templatesAdapter);
     }
 
@@ -133,6 +133,7 @@ public class TemplatesActivity extends BaseActivity {
             }
         });
     }
+
     private void editTemplate(Template template) {
         Intent intent = new Intent(this, EditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, template);

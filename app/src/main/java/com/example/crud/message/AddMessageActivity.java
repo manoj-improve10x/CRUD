@@ -11,7 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddMessageActivity extends BaseAddEditMessageActivity{
+public class AddMessageActivity extends BaseAddEditMessageActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +25,9 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
             String name = nameTxt.getText().toString();
             String number = NumberTxt.getText().toString();
             String message = messageTxt.getText().toString();
-                addMessage(name,number,message);
+            addMessage(name, number, message);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }

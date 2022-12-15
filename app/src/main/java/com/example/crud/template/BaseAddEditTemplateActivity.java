@@ -10,23 +10,16 @@ import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditTemplateActivity extends BaseActivity {
-
-    protected CrudService crudService;
-    //change object name templateTxt
+    //Todo: change object name templateTextTxt
     protected EditText TemplateTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_template);
-        setupApiService();
         log("onCreate");
-        TemplateTxt = findViewById(R.id.add_template_txt);
-    }
 
-    protected void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
+        TemplateTxt = findViewById(R.id.add_template_txt);
     }
 
     @Override

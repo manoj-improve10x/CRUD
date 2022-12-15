@@ -11,7 +11,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddSeriesActivity extends BaseAddEditSeriesActivity{
+public class AddSeriesActivity extends BaseAddEditSeriesActivity {
+    //ToDo: change class name AddSeriesItemActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +22,14 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //change
+
         if (item.getItemId() == R.id.save) {
             String id = seriesIdTxt.getText().toString();
             String name = seriesNameTxt.getText().toString();
             String imageUrl = seriesImage.getText().toString();
-                AddSeries(name, id , imageUrl);
+            AddSeries(name, id, imageUrl);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }

@@ -14,7 +14,6 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
 
     TextView movieNameTxt;
     ImageView movieImg;
-    //change object delete
     ImageButton DeleteBtn;
 
     public MovieViewHolder(@NonNull View itemView) {

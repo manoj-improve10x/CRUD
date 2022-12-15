@@ -12,7 +12,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditTemplateActivity extends BaseAddEditTemplateActivity{
+public class EditTemplateActivity extends BaseAddEditTemplateActivity {
 
     private Template template;
 
@@ -21,7 +21,7 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
         super.onCreate(savedInstanceState);
 
         if (getIntent().hasExtra(Constants.KEY_TEMPLATE)) {
-            template = (Template)getIntent().getSerializableExtra(Constants.KEY_TEMPLATE);
+            template = (Template) getIntent().getSerializableExtra(Constants.KEY_TEMPLATE);
             showData();
             getSupportActionBar().setTitle("Edit Template");
         }
@@ -29,23 +29,23 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        ///id name change
+
         if (item.getItemId() == R.id.save) {
             String message = TemplateTxt.getText().toString();
-                updateTemplate(this.template.id, message);
+            updateTemplate(this.template.id, message);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
     private void showData() {
-        TemplateTxt.setText(template.text);
+        TemplateTxt.setText(template.messageText);
     }
-//change method name to update template
+
     private void updateTemplate(String id, String message) {
         template = new Template();
-        template.text = message;
+        template.messageText = message;
 
         Call<Void> call = crudService.editTemplate(id, template);
         call.enqueue(new Callback<Void>() {

@@ -45,7 +45,7 @@ public class MessagesActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       log("on Resume");
+        log("on Resume");
         fetchData();
     }
 
@@ -57,6 +57,7 @@ public class MessagesActivity extends BaseActivity {
         progressBar.setVisibility(View.GONE);
     }
 
+    //ToDo: change method name fetchMessages
     private void fetchData() {
         showProgressBar();
         Call<List<Message>> call = crudService.fetchMessages();
@@ -68,6 +69,7 @@ public class MessagesActivity extends BaseActivity {
                 hideProgressBar();
             }
 
+            //ToDo: declare first in the onResponse progressBar
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
                 showToast("failed to load data");
@@ -84,15 +86,16 @@ public class MessagesActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.add){
+        if (item.getItemId() == R.id.add) {
             Intent intent = new Intent(this, AddMessageActivity.class);
             startActivity(intent);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
+    //Todo: Declare ids method name as equal to all classes
     private void findIds() {
         progressBar = findViewById(R.id.messages_progressBar);
         messagesRv = findViewById(R.id.messages_rv);
@@ -115,6 +118,7 @@ public class MessagesActivity extends BaseActivity {
         });
     }
 
+    //Todo: change method name
     private void setupMessageRv() {
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messagesRv.setAdapter(messagesAdapter);

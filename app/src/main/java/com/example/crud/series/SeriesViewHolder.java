@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.crud.R;
 
 public class SeriesViewHolder extends RecyclerView.ViewHolder {
+    //Todo: change Class name seriesItemViewHolder
 
-     TextView seriesNameTxt;
-     //change object name
-     ImageButton DeleteBtn;
-     ImageView seriesImg;
+    TextView seriesNameTxt;
+    ImageButton DeleteBtn;
+    ImageView seriesImg;
 
     public SeriesViewHolder(@NonNull View itemView) {
         super(itemView);

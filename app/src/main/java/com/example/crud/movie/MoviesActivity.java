@@ -61,7 +61,7 @@ public class MoviesActivity extends BaseActivity {
             Intent intent = new Intent(this, AddMovieActivity.class);
             startActivity(intent);
             return true;
-        }else {
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
@@ -117,6 +117,7 @@ public class MoviesActivity extends BaseActivity {
             }
         });
     }
+
     private void deleteMovie(String id) {
         Call<Void> call = crudService.deleteMovie(id);
         call.enqueue(new Callback<Void>() {
@@ -132,6 +133,7 @@ public class MoviesActivity extends BaseActivity {
             }
         });
     }
+
     private void editMovie(Movie movie) {
         Intent intent = new Intent(this, EditMovieActivity.class);
         intent.putExtra(Constants.KEY_MOVIE, movie);

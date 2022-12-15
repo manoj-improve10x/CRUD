@@ -13,17 +13,19 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
-
+    // Todo: change object name seriesItems
     private List<Series> seriesList;
     private OnItemActionListener onItemActionListener;
 
     public void setOnItemActionListener(OnItemActionListener actionListener) {
         onItemActionListener = actionListener;
     }
+
     public void setData(List<Series> seriesList) {
         this.seriesList = seriesList;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public SeriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,7 +38,7 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
         Series series = seriesList.get(position);
         holder.seriesNameTxt.setText(series.name);
-        if(series.imageUrl != null && series.imageUrl.isEmpty() == false) {
+        if (series.imageUrl != null && series.imageUrl.isEmpty() == false) {
             Picasso.get().load(series.imageUrl).into(holder.seriesImg);
         }
         holder.DeleteBtn.setOnClickListener(view -> {

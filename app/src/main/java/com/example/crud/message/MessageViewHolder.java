@@ -11,10 +11,11 @@ import com.example.crud.R;
 
 public class MessageViewHolder extends RecyclerView.ViewHolder {
 
-     TextView nameTxt;
-     TextView numberTxt;
-     ImageButton deleteBtn;
-     TextView messageTextTxt;
+    TextView nameTxt;
+    //ToDo: change object name phoneNumberTxt
+    TextView numberTxt;
+    ImageButton deleteBtn;
+    TextView messageTextTxt;
 
     public MessageViewHolder(@NonNull View itemView) {
         super(itemView);
