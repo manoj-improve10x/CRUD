@@ -83,7 +83,7 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void initViews() {
-        progressBar = findViewById(R.id.progressbar);
+        progressBar = findViewById(R.id.progress_bar);
         seriesItemsRv = findViewById(R.id.series_items_rv);
     }
 
