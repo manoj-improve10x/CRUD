@@ -79,15 +79,15 @@ public class TemplatesActivity extends BaseActivity {
         call.enqueue(new Callback<List<Template>>() {
             @Override
             public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
+                hideProgressBar();
                 List<Template> templates = response.body();
                 templatesAdapter.setData(templates);
-                hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<List<Template>> call, Throwable t) {
-                showToast("Failed to load data");
                 hideProgressBar();
+                showToast("Failed to load data");
             }
         });
     }
@@ -120,15 +120,18 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void deleteTemplate(String id) {
+        showProgressBar();
         Call<Void> call = crudService.deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                hideProgressBar();
                 showToast("successfully deleted the template");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                hideProgressBar();
                 showToast("failed to delete template");
             }
         });

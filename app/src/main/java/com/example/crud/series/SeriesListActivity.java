@@ -68,15 +68,15 @@ public class SeriesListActivity extends BaseActivity {
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
+                hideProgressBar();
                 List<Series> series = response.body();
                 seriesListAdapter.setData(series);
-                hideProgressBar();
             }
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                showToast("Failed to load series");
                 hideProgressBar();
+                showToast("Failed to load series");
             }
         });
     }
@@ -121,15 +121,18 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void deleteSeries(String id) {
+        showProgressBar();
         Call<Void> call = crudService.deleteSeriesItem(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                hideProgressBar();
                 showToast("Successfully deleted series");
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                hideProgressBar();
                 showToast("Failed to delete series");
             }
         });
