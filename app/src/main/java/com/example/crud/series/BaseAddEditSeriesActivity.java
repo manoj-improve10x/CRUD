@@ -32,8 +32,8 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
     }
 
     private void initViews() {
-        seriesIdTxt = findViewById(R.id.series_id);
-        seriesNameTxt = findViewById(R.id.series_name);
+        seriesIdTxt = findViewById(R.id.series_id_txt);
+        seriesNameTxt = findViewById(R.id.series_name_txt);
         seriesImage = findViewById(R.id.series_image);
     }
 

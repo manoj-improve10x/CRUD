@@ -22,7 +22,7 @@ public class BaseAddEditTemplateActivity extends BaseActivity {
     }
 
     private void initViews() {
-        TemplateTxt = findViewById(R.id.add_template_txt);
+        TemplateTxt = findViewById(R.id.template_text_txt);
     }
 
     @Override

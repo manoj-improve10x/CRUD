@@ -93,7 +93,7 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void initViews() {
-        progressBar = findViewById(R.id.templates_progressbar);
+        progressBar = findViewById(R.id.progressbar);
         templatesRv = findViewById(R.id.templates_rv);
     }
 

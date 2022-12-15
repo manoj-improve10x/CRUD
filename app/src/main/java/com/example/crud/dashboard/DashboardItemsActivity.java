@@ -49,7 +49,7 @@ public class DashboardItemsActivity extends BaseActivity {
     }
 //Todo: Create new Method for ids in all classes give proper name
     private void initViews() {
-        dashboardItemsRv = findViewById(R.id.dash_board_rv);
+        dashboardItemsRv = findViewById(R.id.dashboard_items_rv);
     }
 
     private void setupDashboardItemsRv() {
