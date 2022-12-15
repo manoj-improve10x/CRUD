@@ -17,18 +17,17 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface CrudService {
-    //ToDo: Change constant name MESSAGES_END_POINT
 
-    @GET(Constants.MESSAGE_END_POINT)
+    @GET(Constants.MESSAGES_END_POINT)
     Call<List<Message>> fetchMessages();
 
-    @POST(Constants.MESSAGE_END_POINT)
+    @POST(Constants.MESSAGES_END_POINT)
     Call<Message> createMessage(@Body Message message);
 
-    @DELETE(Constants.MESSAGE_END_POINT + "/{id}")
+    @DELETE(Constants.MESSAGES_END_POINT + "/{id}")
     Call<Void> deleteMessage(@Path("id") String id);
 
-    @PUT(Constants.MESSAGE_END_POINT + "/{id}")
+    @PUT(Constants.MESSAGES_END_POINT + "/{id}")
     Call<Void> editMessage(@Path("id") String id, @Body Message message);
 
     @GET(Constants.TEMPLATES_END_POINT)
@@ -43,19 +42,17 @@ public interface CrudService {
     @PUT(Constants.TEMPLATES_END_POINT + "/{id}")
     Call<Void> editTemplate(@Path("id") String id, @Body Template template);
 
-    //ToDo: Change name fetchSeriesItems
     @GET(Constants.SERIES_END_POINT)
-    Call<List<Series>> fetchSeriesList();
+    Call<List<Series>> fetchSeriesItems();
 
-    //ToDo: CrudServiceInterface: change name createSeriesItem
     @POST(Constants.SERIES_END_POINT)
-    Call<Series> createSeries(@Body Series series);
+    Call<Series> createSeriesItem(@Body Series series);
 
     @DELETE(Constants.SERIES_END_POINT + "/{id}")
-    Call<Void> deleteSeries(@Path("id") String id);
+    Call<Void> deleteSeriesItem(@Path("id") String id);
 
     @PUT(Constants.SERIES_END_POINT + "/{id}")
-    Call<Void> editSeries(@Path("id") String id, @Body Series series);
+    Call<Void> editSeriesItem(@Path("id") String id, @Body Series series);
 
     @GET(Constants.MOVIES_END_POINT)
     Call<List<Movie>> fetchMovies();
