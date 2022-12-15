@@ -80,7 +80,7 @@ public class MoviesActivity extends BaseActivity {
     }
 
     private void setupMoviesRv() {
-        progressBar = findViewById(R.id.progressbar);
+        progressBar = findViewById(R.id.progress_bar);
         moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesAdapter = new MoviesAdapter();
