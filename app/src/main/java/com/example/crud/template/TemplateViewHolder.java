@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.crud.R;
 
 public class TemplateViewHolder extends RecyclerView.ViewHolder {
-    //ToDo: change object name
-    TextView textTxt;
+
+    TextView templateTextTxt;
     ImageButton deleteBtn;
 
     public TemplateViewHolder(@NonNull View itemView) {
         super(itemView);
-        textTxt = itemView.findViewById(R.id.text_txt);
+        templateTextTxt = itemView.findViewById(R.id.template_text_txt);
         deleteBtn = itemView.findViewById(R.id.delete_btn);
     }
 }
