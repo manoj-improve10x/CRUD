@@ -12,7 +12,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditSeriesActivity extends BaseAddEditSeriesActivity {
+public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
     //Todo: change class name EditSeriesItemActivity
     private Series series;
 

@@ -5,12 +5,9 @@ import android.view.Menu;
 import android.widget.EditText;
 
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
-//ToDo: add item word
-public class BaseAddEditSeriesActivity extends BaseActivity {
+public class BaseAddEditSeriesItemActivity extends BaseActivity {
 
     protected EditText seriesIdTxt;
     protected EditText seriesNameTxt;
