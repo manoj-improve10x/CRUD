@@ -37,7 +37,7 @@ public class MessagesActivity extends BaseActivity {
         log("on Create Called");
         initViews();
         setupMessagesAdapter();
-        setupMessageRv();
+        setupMessagesRv();
     }
 
     @Override
@@ -113,8 +113,7 @@ public class MessagesActivity extends BaseActivity {
         });
     }
 
-    //Todo: change method name
-    private void setupMessageRv() {
+    private void setupMessagesRv() {
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messagesRv.setAdapter(messagesAdapter);
     }
