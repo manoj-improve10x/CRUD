@@ -19,8 +19,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
-    //Todo: remove CrudService in all activities
-    protected CrudService crudService;
     //ToDo:  change class name CustomSeriesItemsAdapter
     protected CustomSeriesAdapter customSeriesAdapter;
     //ToDo: change object to seriesItems

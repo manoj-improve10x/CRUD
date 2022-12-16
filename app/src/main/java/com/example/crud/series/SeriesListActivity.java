@@ -38,13 +38,7 @@ public class SeriesListActivity extends BaseActivity {
         getSupportActionBar().setTitle("Series");
         log("onCreate");
         initViews();
-        setupApiService();
         setupSeriesItemsRv();
-    }
-
-    private void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
     }
 
     @Override

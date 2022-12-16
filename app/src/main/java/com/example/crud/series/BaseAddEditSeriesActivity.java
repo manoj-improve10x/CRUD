@@ -12,7 +12,6 @@ import com.example.crud.base.BaseActivity;
 //ToDo: add item word
 public class BaseAddEditSeriesActivity extends BaseActivity {
 
-    protected CrudService crudService;
     protected EditText seriesIdTxt;
     protected EditText seriesNameTxt;
     protected EditText seriesImage;
@@ -22,13 +21,7 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_series);
         log("onCreate");
-        setupApiService();
         initViews();
-    }
-
-    private void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
     }
 
     private void initViews() {
