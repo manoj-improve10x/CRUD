@@ -16,7 +16,7 @@ public class TemplatesAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
     private List<Template> templates;
     private OnItemActionListener onItemActionListener;
 
-    public void setOnItemActionListener(OnItemActionListener actionListener) {
+    void setOnItemActionListener(OnItemActionListener actionListener) {
         onItemActionListener = actionListener;
     }
 
