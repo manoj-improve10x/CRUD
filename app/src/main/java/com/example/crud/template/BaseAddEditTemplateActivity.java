@@ -5,13 +5,11 @@ import android.view.Menu;
 import android.widget.EditText;
 
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditTemplateActivity extends BaseActivity {
     //Todo: change object name templateTextTxt
-    protected EditText TemplateTxt;
+    protected EditText TemplateTextTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +20,7 @@ public class BaseAddEditTemplateActivity extends BaseActivity {
     }
 
     private void initViews() {
-        TemplateTxt = findViewById(R.id.template_text_txt);
+        TemplateTextTxt = findViewById(R.id.template_text_txt);
     }
 
     @Override
