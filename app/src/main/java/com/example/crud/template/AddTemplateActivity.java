@@ -23,15 +23,14 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save) {
             String message = TemplateTextTxt.getText().toString();
-            AddTemplate(message);
+            addTemplate(message);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    //Todo: change method proper
-    private void AddTemplate(String message) {
+    private void addTemplate(String message) {
         Template template = new Template();
         template.messageText = message;
         Call<Template> call = crudService.createTemplate(template);
