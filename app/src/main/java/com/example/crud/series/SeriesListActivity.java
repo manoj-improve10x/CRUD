@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
 import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -109,7 +108,7 @@ public class SeriesListActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddSeriesActivity.class);
+            Intent intent = new Intent(this, AddSeriesItemActivity.class);
             startActivity(intent);
             return true;
         } else {
