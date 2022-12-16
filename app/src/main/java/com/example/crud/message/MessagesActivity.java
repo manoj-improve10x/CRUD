@@ -91,7 +91,6 @@ public class MessagesActivity extends BaseActivity {
         }
     }
 
-    //Todo: Declare ids method name as equal to all classes
     private void initViews() {
         progressBar = findViewById(R.id.progress_bar);
         messagesRv = findViewById(R.id.messages_rv);

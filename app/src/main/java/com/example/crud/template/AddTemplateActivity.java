@@ -22,7 +22,7 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save) {
-            String message = TemplateTxt.getText().toString();
+            String message = TemplateTextTxt.getText().toString();
             AddTemplate(message);
             return true;
         } else {
