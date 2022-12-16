@@ -6,7 +6,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
 import com.example.crud.base.BaseActivity;
 import com.example.crud.series.Series;
 
@@ -18,9 +17,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
+
     protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
-    //ToDo: change object to seriesItems
-    protected ArrayList<Series> seriesList = new ArrayList<>();
+    protected ArrayList<Series> seriesItems = new ArrayList<>();
     protected Spinner seriesSp;
     protected Movie movie;
     protected EditText movieNameTxt;
@@ -59,7 +58,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     //Todo: change method name setupSeriesItemsSp
     private void setupSeriesListSp() {
-        customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesList);
+        customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
         seriesSp.setAdapter(customSeriesItemsAdapter);
     }
 
