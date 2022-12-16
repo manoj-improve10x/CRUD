@@ -17,11 +17,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHolder> {
+public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardItemViewHolder> {
 
     private ArrayList<DashboardItem> dashboardItems;
 
-    //Todo: DashboardItemAdapter-change parameter name dashboardItems
     void setData(ArrayList<DashboardItem> dashboardItems) {
         this.dashboardItems = dashboardItems;
         notifyDataSetChanged();
@@ -29,14 +28,14 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHol
 
     @NonNull
     @Override
-    public DashboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DashboardItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dash_board_item, parent, false);
-        DashboardViewHolder dashBoardViewHolder = new DashboardViewHolder(view);
-        return dashBoardViewHolder;
+        DashboardItemViewHolder dashBoardItemViewHolder = new DashboardItemViewHolder(view);
+        return dashBoardItemViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DashboardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DashboardItemViewHolder holder, int position) {
         DashboardItem dashboardItem = dashboardItems.get(position);
         holder.dashBoardTitleTxt.setText(dashboardItem.title);
         Picasso.get().load(dashboardItem.imageUrl).into(holder.dashBoardImage);
