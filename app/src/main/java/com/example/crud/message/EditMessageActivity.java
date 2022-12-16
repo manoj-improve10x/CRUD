@@ -19,10 +19,9 @@ public class EditMessageActivity extends BaseAddEditMessageActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Edit Message");
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
-            //Todo: Declare title before If Condition in all EditFunctionalityActivity Classes
             message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
-            getSupportActionBar().setTitle("Edit Message");
             showData();
         }
     }
