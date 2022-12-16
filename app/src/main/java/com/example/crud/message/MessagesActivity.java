@@ -44,7 +44,7 @@ public class MessagesActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         log("on Resume");
-        fetchData();
+        fetchMessages();
     }
 
     private void showProgressBar() {
@@ -55,8 +55,7 @@ public class MessagesActivity extends BaseActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-    //ToDo: change method name fetchMessages
-    private void fetchData() {
+    private void fetchMessages() {
         showProgressBar();
         Call<List<Message>> call = crudService.fetchMessages();
         call.enqueue(new Callback<List<Message>>() {
@@ -105,7 +104,7 @@ public class MessagesActivity extends BaseActivity {
             @Override
             public void OnDelete(String id) {
                 deleteMessage(id);
-                fetchData();
+                fetchMessages();
             }
 
             @Override
@@ -129,7 +128,7 @@ public class MessagesActivity extends BaseActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 hideProgressBar();
                 showToast("successfully deleted the message");
-                fetchData();
+                fetchMessages();
             }
 
             @Override
