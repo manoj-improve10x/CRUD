@@ -10,8 +10,8 @@ import com.example.crud.base.BaseActivity;
 public class BaseAddEditMessageActivity extends BaseActivity {
 
     protected EditText nameTxt;
-    protected EditText NumberTxt;
-    protected EditText messageTxt;
+    protected EditText phoneNumberTxt;
+    protected EditText messageTextTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +22,9 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     }
 
     private void initViews() {
-        //ToDo: change object name phoneNumberTxt
         nameTxt = findViewById(R.id.name_txt);
-        NumberTxt = findViewById(R.id.number_txt);
-        //ToDo: change name messageTextTxt
-        messageTxt = findViewById(R.id.message_txt);
+        phoneNumberTxt = findViewById(R.id.phone_number_txt);
+        messageTextTxt = findViewById(R.id.message_text_txt);
     }
 
     @Override

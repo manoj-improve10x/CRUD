@@ -23,8 +23,8 @@ public class AddMessageActivity extends BaseAddEditMessageActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save) {
             String name = nameTxt.getText().toString();
-            String number = NumberTxt.getText().toString();
-            String message = messageTxt.getText().toString();
+            String number = phoneNumberTxt.getText().toString();
+            String message = messageTextTxt.getText().toString();
             addMessage(name, number, message);
             return true;
         } else {

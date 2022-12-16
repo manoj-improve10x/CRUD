@@ -29,16 +29,16 @@ public class EditMessageActivity extends BaseAddEditMessageActivity {
 
     private void showData() {
         nameTxt.setText(message.name);
-        NumberTxt.setText(message.number);
-        messageTxt.setText(message.messageText);
+        phoneNumberTxt.setText(message.number);
+        messageTextTxt.setText(message.messageText);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.save) {
             String name = nameTxt.getText().toString();
-            String number = NumberTxt.getText().toString();
-            String message = messageTxt.getText().toString();
+            String number = phoneNumberTxt.getText().toString();
+            String message = messageTextTxt.getText().toString();
             EditMessage(this.message.id, name, number, message);
             return true;
         } else {
