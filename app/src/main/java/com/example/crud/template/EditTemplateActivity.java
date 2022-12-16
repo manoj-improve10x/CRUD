@@ -19,11 +19,10 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().setTitle("Edit Template");
         if (getIntent().hasExtra(Constants.KEY_TEMPLATE)) {
             template = (Template) getIntent().getSerializableExtra(Constants.KEY_TEMPLATE);
             showData();
-            getSupportActionBar().setTitle("Edit Template");
         }
     }
 

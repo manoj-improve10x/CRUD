@@ -19,10 +19,9 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().setTitle("Edit Series");
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
             series = (Series) getIntent().getSerializableExtra(Constants.KEY_SERIES);
-            getSupportActionBar().setTitle("Edit Series");
             showData();
         }
     }
