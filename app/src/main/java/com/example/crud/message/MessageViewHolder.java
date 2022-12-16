@@ -12,15 +12,14 @@ import com.example.crud.R;
 public class MessageViewHolder extends RecyclerView.ViewHolder {
 
     TextView nameTxt;
-    //ToDo: change object name phoneNumberTxt
-    TextView numberTxt;
+    TextView phoneNumberTxt;
     ImageButton deleteBtn;
     TextView messageTextTxt;
 
     public MessageViewHolder(@NonNull View itemView) {
         super(itemView);
         nameTxt = itemView.findViewById(R.id.name_txt);
-        numberTxt = itemView.findViewById(R.id.number_txt);
+        phoneNumberTxt = itemView.findViewById(R.id.phone_number_txt);
         messageTextTxt = itemView.findViewById(R.id.message_text_txt);
         deleteBtn = itemView.findViewById(R.id.delete_btn);
     }
