@@ -34,7 +34,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         log("on create");
         initViews();
         setupSeriesItemsSp();
-        fetchSeriesList();
+        fetchSeriesItems();
     }
 
     @Override
@@ -69,8 +69,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         movieDescriptionTxt = findViewById(R.id.movie_description_txt);
     }
 
-    //ToDo: change method name fetchSeriesItems
-    private void fetchSeriesList() {
+    private void fetchSeriesItems() {
         Call<List<Series>> call = crudService.fetchSeriesItems();
         call.enqueue(new Callback<List<Series>>() {
             @Override
