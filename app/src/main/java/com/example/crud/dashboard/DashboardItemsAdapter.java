@@ -37,20 +37,20 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardItemVie
     @Override
     public void onBindViewHolder(@NonNull DashboardItemViewHolder holder, int position) {
         DashboardItem dashboardItem = dashboardItems.get(position);
-        holder.dashBoardTitleTxt.setText(dashboardItem.title);
-        Picasso.get().load(dashboardItem.imageUrl).into(holder.dashBoardImage);
+        holder.titleTxt.setText(dashboardItem.title);
+        Picasso.get().load(dashboardItem.imageUrl).into(holder.dashboardImg);
         holder.itemView.setOnClickListener(view -> {
-            if (holder.dashBoardTitleTxt.getText().toString().equalsIgnoreCase("Messages")) {
-                Intent intent = new Intent(holder.dashBoardTitleTxt.getContext(), MessagesActivity.class);
+            if (holder.titleTxt.getText().toString().equalsIgnoreCase("Messages")) {
+                Intent intent = new Intent(holder.titleTxt.getContext(), MessagesActivity.class);
                 holder.itemView.getContext().startActivity(intent);
-            } else if (holder.dashBoardTitleTxt.getText().toString().equalsIgnoreCase("SeriesList")) {
-                Intent intent = new Intent(holder.dashBoardTitleTxt.getContext(), SeriesListActivity.class);
+            } else if (holder.titleTxt.getText().toString().equalsIgnoreCase("SeriesList")) {
+                Intent intent = new Intent(holder.titleTxt.getContext(), SeriesListActivity.class);
                 holder.itemView.getContext().startActivity(intent);
-            } else if (holder.dashBoardTitleTxt.getText().toString().equalsIgnoreCase("Templates")) {
-                Intent intent = new Intent(holder.dashBoardTitleTxt.getContext(), TemplatesActivity.class);
+            } else if (holder.titleTxt.getText().toString().equalsIgnoreCase("Templates")) {
+                Intent intent = new Intent(holder.titleTxt.getContext(), TemplatesActivity.class);
                 holder.itemView.getContext().startActivity(intent);
-            } else if (holder.dashBoardTitleTxt.getText().toString().equalsIgnoreCase("Movies")) {
-                Intent intent = new Intent(holder.dashBoardTitleTxt.getContext(), MoviesActivity.class);
+            } else if (holder.titleTxt.getText().toString().equalsIgnoreCase("Movies")) {
+                Intent intent = new Intent(holder.titleTxt.getContext(), MoviesActivity.class);
                 holder.itemView.getContext().startActivity(intent);
             }
         });
