@@ -8,7 +8,7 @@ import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditTemplateActivity extends BaseActivity {
-    //Todo: change object name templateTextTxt
+
     protected EditText TemplateTextTxt;
 
     @Override
