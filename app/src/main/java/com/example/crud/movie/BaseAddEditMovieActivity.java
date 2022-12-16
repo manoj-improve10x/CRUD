@@ -7,7 +7,6 @@ import android.widget.Spinner;
 
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 import com.example.crud.series.Series;
 
@@ -19,8 +18,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
-    //ToDo:  change class name CustomSeriesItemsAdapter
-    protected CustomSeriesAdapter customSeriesAdapter;
+    protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
     //ToDo: change object to seriesItems
     protected ArrayList<Series> seriesList = new ArrayList<>();
     protected Spinner seriesSp;
@@ -35,7 +33,6 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
         log("on create");
-        setupApiService();
         initViews();
         setupSeriesListSp();
         fetchSeriesList();
@@ -47,19 +44,13 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         return true;
     }
 
-    //ToDo: remove setupApiService method in all classes
-    private void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
-    }
-
     protected void showData() {
         movieNameTxt.setText(movie.movieName);
         movieIdTxt.setText(movie.movieId);
         imageUrlTxt.setText(movie.movieImageUrl);
         movieDescriptionTxt.setText(movie.description);
-        for (int i = 0; i < customSeriesAdapter.getCount(); i++) {
-            Series series = customSeriesAdapter.getItem(i);
+        for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
+            Series series = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(series.seriesId)) {
                 seriesSp.setSelection(i);
             }
@@ -68,8 +59,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     //Todo: change method name setupSeriesItemsSp
     private void setupSeriesListSp() {
-        customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesList);
-        seriesSp.setAdapter(customSeriesAdapter);
+        customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesList);
+        seriesSp.setAdapter(customSeriesItemsAdapter);
     }
 
     private void initViews() {
@@ -87,7 +78,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 List<Series> series = response.body();
-                customSeriesAdapter.addAll(series);
+                customSeriesItemsAdapter.addAll(series);
                 if (movie != null) {
                     showData();
                 }
