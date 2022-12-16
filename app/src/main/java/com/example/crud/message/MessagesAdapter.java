@@ -16,10 +16,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     private List<Message> messages;
     private OnItemActionListener onItemActionListener;
 
-    //Todo: remove public specifier in all adapter classes
-    //ToDo: change parameter name is use same
-    public void setData(List<Message> messageList) {
-        messages = messageList;
+    public void setData(List<Message> messages) {
+        this.messages = messages;
         notifyDataSetChanged();
     }
 
