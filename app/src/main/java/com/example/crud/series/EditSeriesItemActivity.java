@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
-    //Todo: change class name EditSeriesItemActivity
+
     private Series series;
 
     @Override
@@ -39,14 +39,14 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
             String id = seriesIdTxt.getText().toString();
             String name = seriesNameTxt.getText().toString();
             String imageUrl = seriesImage.getText().toString();
-            EditSeries(id, name, imageUrl);
+            updateSeriesItem(id, name, imageUrl);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void EditSeries(String id, String name, String imageUrl) {
+    private void updateSeriesItem(String id, String name, String imageUrl) {
         series = new Series();
         series.seriesId = id;
         series.name = name;
