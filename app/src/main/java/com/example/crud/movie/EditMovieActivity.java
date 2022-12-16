@@ -42,7 +42,6 @@ public class EditMovieActivity extends BaseAddEditMovieActivity {
         }
     }
 
-    //name change
     private void updateMovie(String id, String name, String movieId, String seriesId, String imagesUrl, String description) {
         movie = new Movie();
         movie.movieName = name;

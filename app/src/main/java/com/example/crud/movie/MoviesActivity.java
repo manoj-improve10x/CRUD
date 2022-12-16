@@ -30,7 +30,6 @@ public class MoviesActivity extends BaseActivity {
     private RecyclerView moviesRv;
     private ProgressBar progressBar;
     private MoviesAdapter moviesAdapter;
-    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,6 @@ public class MoviesActivity extends BaseActivity {
         getSupportActionBar().setTitle("Movies");
         log("onCreate");
         initViews();
-        setupApiService();
         setupMoviesRv();
     }
 
@@ -65,11 +63,6 @@ public class MoviesActivity extends BaseActivity {
         } else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void setupApiService() {
-        CrudApi api = new CrudApi();
-        crudService = api.createCrudService();
     }
 
     private void showProgressBar() {
