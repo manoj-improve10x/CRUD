@@ -33,7 +33,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         setContentView(R.layout.activity_add_edit_movie);
         log("on create");
         initViews();
-        setupSeriesListSp();
+        setupSeriesItemsSp();
         fetchSeriesList();
     }
 
@@ -56,8 +56,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         }
     }
 
-    //Todo: change method name setupSeriesItemsSp
-    private void setupSeriesListSp() {
+    private void setupSeriesItemsSp() {
         customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
         seriesSp.setAdapter(customSeriesItemsAdapter);
     }
