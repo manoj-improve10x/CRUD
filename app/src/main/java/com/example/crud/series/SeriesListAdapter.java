@@ -21,7 +21,7 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
         onItemActionListener = actionListener;
     }
 
-    public void setData(List<Series> seriesList) {
+    void setData(List<Series> seriesList) {
         this.seriesList = seriesList;
         notifyDataSetChanged();
     }
