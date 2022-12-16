@@ -33,9 +33,8 @@ public class TemplatesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
-        log("onCreate");
-        //Todo: first create title in the onCreate
         getSupportActionBar().setTitle("Templates");
+        log("onCreate");
         initViews();
         setupTemplatesAdapter();
         setupTemplatesRv();
