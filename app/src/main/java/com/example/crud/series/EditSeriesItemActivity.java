@@ -27,28 +27,28 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
     }
 
     private void showData() {
-        seriesIdTxt.setText(series.seriesId);
-        seriesNameTxt.setText(series.name);
-        seriesImage.setText(series.imageUrl);
+        binding.seriesIdTxt.setText(series.seriesId);
+        binding.seriesNameTxt.setText(series.name);
+        binding.seriesImage.setText(series.imageUrl);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.save) {
-            String id = seriesIdTxt.getText().toString();
-            String name = seriesNameTxt.getText().toString();
-            String imageUrl = seriesImage.getText().toString();
-            updateSeriesItem(id, name, imageUrl);
+            String name = binding.seriesNameTxt.getText().toString();
+            String seriesId = binding.seriesIdTxt.getText().toString();
+            String imageUrl = binding.seriesImage.getText().toString();
+            updateSeriesItem(series.id, seriesId, name, imageUrl);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void updateSeriesItem(String id, String name, String imageUrl) {
+    private void updateSeriesItem(String id,  String seriesId, String name, String imageUrl) {
         series = new Series();
-        series.seriesId = id;
+        series.seriesId = seriesId;
         series.name = name;
         series.imageUrl = imageUrl;
 
