@@ -8,15 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
+import com.example.crud.databinding.DashBoardItemBinding;
 
 public class DashboardItemViewHolder extends RecyclerView.ViewHolder {
 
-    TextView titleTxt;
-    ImageView dashboardImg;
+    DashBoardItemBinding binding;
 
-    public DashboardItemViewHolder(@NonNull View itemView) {
-        super(itemView);
-        titleTxt = itemView.findViewById(R.id.title_txt);
-        dashboardImg = itemView.findViewById(R.id.dashboard_img);
+    public DashboardItemViewHolder(DashBoardItemBinding dashBoardItemBinding) {
+        super(dashBoardItemBinding.getRoot());
+       binding = dashBoardItemBinding;
     }
 }

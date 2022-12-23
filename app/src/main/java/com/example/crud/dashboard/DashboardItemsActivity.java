@@ -7,22 +7,23 @@ import android.os.Bundle;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityDashBoardBinding;
 
 import java.util.ArrayList;
 
 public class DashboardItemsActivity extends BaseActivity {
 
+    private ActivityDashBoardBinding binding;
     private ArrayList<DashboardItem> dashboardItems;
-    private RecyclerView dashboardItemsRv;
     private DashboardItemsAdapter dashboardItemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_board);
+        binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Dashboard");
         log("onCreate");
-        initViews();
         setupData();
         setupDashboardItemsRv();
     }
@@ -39,23 +40,19 @@ public class DashboardItemsActivity extends BaseActivity {
         templates.title = "Templates";
         dashboardItems.add(templates);
         DashboardItem movies = new DashboardItem();
-        movies.imageUrl = "https://www.google.com/search?rlz=1C1JJTC_enIN1022IN1022&sxsrf=ALiCzsZuPMiIe7SloM6SUgGMo5LJTYASog:1670913223759&q=movie+folder+png&tbm=isch&sa=X&ved=2ahUKEwiD-pvp_PX7AhVwH7cAHUFeAEcQ0pQJegQIDBAB&biw=1536&bih=746&dpr=1.25#imgrc=oXmHMYeeUnfyoM";
+        movies.imageUrl = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/ed4f9bf6-0144-4b2e-bfff-60bd129cd587/d4q8dy8-4bc1e5ef-46f7-42c8-b8dd-0856f232098b.jpg";
         movies.title = "Movies";
         dashboardItems.add(movies);
         DashboardItem seriesItems = new DashboardItem();
         seriesItems.title = "SeriesList";
-        seriesItems.imageUrl = "https://www.google.com/search?rlz=1C1JJTC_enIN1022IN1022&sxsrf=ALiCzsZuPMiIe7SloM6SUgGMo5LJTYASog:1670913223759&q=movie+folder+png&tbm=isch&sa=X&ved=2ahUKEwiD-pvp_PX7AhVwH7cAHUFeAEcQ0pQJegQIDBAB&biw=1536&bih=746&dpr=1.25#imgrc=oXmHMYeeUnfyoM";
+        seriesItems.imageUrl = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/574a12ae-b953-4f51-8253-5a7f34d477fb/dce38iv-c126dcac-1629-4a7b-b410-4eb8546227a7.png/v1/fill/w_512,h_512,q_80,strp/series_general_folder_icon_by_mrartoholic_dce38iv-fullview.jpg";
         dashboardItems.add(seriesItems);
     }
 
-    private void initViews() {
-        dashboardItemsRv = findViewById(R.id.dashboard_items_rv);
-    }
-
     private void setupDashboardItemsRv() {
-        dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
+        binding.dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
         dashboardItemsAdapter = new DashboardItemsAdapter();
         dashboardItemsAdapter.setData(dashboardItems);
-        dashboardItemsRv.setAdapter(dashboardItemsAdapter);
+        binding.dashboardItemsRv.setAdapter(dashboardItemsAdapter);
     }
 }
