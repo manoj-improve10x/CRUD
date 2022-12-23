@@ -6,21 +6,18 @@ import android.widget.EditText;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityAddEditTemplateBinding;
 
 public class BaseAddEditTemplateActivity extends BaseActivity {
 
-    protected EditText TemplateTextTxt;
+    protected ActivityAddEditTemplateBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_template);
+        binding = ActivityAddEditTemplateBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         log("onCreate");
-        initViews();
-    }
-
-    private void initViews() {
-        TemplateTextTxt = findViewById(R.id.template_text_txt);
     }
 
     @Override
