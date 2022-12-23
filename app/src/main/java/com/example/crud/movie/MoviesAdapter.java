@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
+import com.example.crud.databinding.MoviesItemBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -29,20 +30,20 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movies_item, parent, false);
-        MovieViewHolder movieViewHolder = new MovieViewHolder(view);
+        MoviesItemBinding binding = MoviesItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        MovieViewHolder movieViewHolder = new MovieViewHolder(binding);
         return movieViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = movies.get(position);
-        holder.movieNameTxt.setText(movie.movieName);
-        Picasso.get().load(movie.movieImageUrl).into(holder.movieImg);
-        holder.DeleteBtn.setOnClickListener(view -> {
+        holder.binding.movieNameTxt.setText(movie.movieName);
+        Picasso.get().load(movie.movieImageUrl).into(holder.binding.movieImg);
+        holder.binding.movieDeleteBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(movie.id);
         });
-        holder.itemView.setOnClickListener(view -> {
+        holder.binding.getRoot().setOnClickListener(view -> {
             onItemActionListener.onEdit(movie);
         });
     }

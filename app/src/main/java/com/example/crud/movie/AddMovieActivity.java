@@ -24,12 +24,12 @@ public class AddMovieActivity extends BaseAddEditMovieActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.save) {
-            String movieName = movieNameTxt.getText().toString();
-            String movieId = movieIdTxt.getText().toString();
-            Series series = (Series) seriesSp.getSelectedItem();
+            String movieName = binding.movieNameTxt.getText().toString();
+            String movieId = binding.movieIdTxt.getText().toString();
+            Series series = (Series) binding.movieSeriesSp.getSelectedItem();
             String seriesId = series.seriesId;
-            String imagesUrl = imageUrlTxt.getText().toString();
-            String description = movieDescriptionTxt.getText().toString();
+            String imagesUrl = binding.imageUrlTxt.getText().toString();
+            String description = binding.movieDescriptionTxt.getText().toString();
             addMovie(movieName, movieId, seriesId, imagesUrl, description);
             return true;
         } else {
@@ -37,7 +37,6 @@ public class AddMovieActivity extends BaseAddEditMovieActivity {
         }
     }
 
-    //ToDo: Use constructor in all classes
     private void addMovie(String name, String movieId, String seriesId, String imagesUrl, String description) {
         movie = new Movie();
         movie.movieName = name;

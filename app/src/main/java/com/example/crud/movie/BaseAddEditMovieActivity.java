@@ -7,6 +7,7 @@ import android.widget.Spinner;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityAddEditMovieBinding;
 import com.example.crud.series.Series;
 
 import java.util.ArrayList;
@@ -18,21 +19,17 @@ import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
 
+    protected ActivityAddEditMovieBinding binding;
     protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
     protected ArrayList<Series> seriesItems = new ArrayList<>();
-    protected Spinner seriesSp;
     protected Movie movie;
-    protected EditText movieNameTxt;
-    protected EditText movieIdTxt;
-    protected EditText imageUrlTxt;
-    protected EditText movieDescriptionTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_movie);
+        binding = ActivityAddEditMovieBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         log("on create");
-        initViews();
         setupSeriesItemsSp();
         fetchSeriesItems();
     }
@@ -44,29 +41,21 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     protected void showData() {
-        movieNameTxt.setText(movie.movieName);
-        movieIdTxt.setText(movie.movieId);
-        imageUrlTxt.setText(movie.movieImageUrl);
-        movieDescriptionTxt.setText(movie.description);
+        binding.movieNameTxt.setText(movie.movieName);
+        binding.movieIdTxt.setText(movie.movieId);
+        binding.imageUrlTxt.setText(movie.movieImageUrl);
+        binding.movieDescriptionTxt.setText(movie.description);
         for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
             Series series = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(series.seriesId)) {
-                seriesSp.setSelection(i);
+                binding.movieSeriesSp.setSelection(i);
             }
         }
     }
 
     private void setupSeriesItemsSp() {
         customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
-        seriesSp.setAdapter(customSeriesItemsAdapter);
-    }
-
-    private void initViews() {
-        seriesSp = findViewById(R.id.movie_series_sp);
-        movieNameTxt = findViewById(R.id.movie_name_txt);
-        movieIdTxt = findViewById(R.id.movie_id_txt);
-        imageUrlTxt = findViewById(R.id.image_url_txt);
-        movieDescriptionTxt = findViewById(R.id.movie_description_txt);
+        binding.movieSeriesSp.setAdapter(customSeriesItemsAdapter);
     }
 
     private void fetchSeriesItems() {

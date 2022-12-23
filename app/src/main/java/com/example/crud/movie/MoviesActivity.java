@@ -16,6 +16,7 @@ import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityMovieListBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +27,17 @@ import retrofit2.Response;
 
 public class MoviesActivity extends BaseActivity {
 
+    private ActivityMovieListBinding binding;
     private ArrayList<Movie> movies = new ArrayList<>();
-    private RecyclerView moviesRv;
-    private ProgressBar progressBar;
     private MoviesAdapter moviesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_list);
+        binding = ActivityMovieListBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Movies");
         log("onCreate");
-        initViews();
         setupMoviesRv();
     }
 
@@ -66,20 +66,15 @@ public class MoviesActivity extends BaseActivity {
     }
 
     private void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
-    }
-
-    private void initViews() {
-        progressBar = findViewById(R.id.progress_bar);
-        moviesRv = findViewById(R.id.movies_rv);
+        binding.progressBar.setVisibility(View.GONE);
     }
 
     private void setupMoviesRv() {
-        moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
+        binding.moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesAdapter = new MoviesAdapter();
         moviesAdapter.setData(movies);
         moviesAdapter.setOnItemActionListener(new OnItemActionListener() {
@@ -93,7 +88,7 @@ public class MoviesActivity extends BaseActivity {
                 editMovie(movie);
             }
         });
-        moviesRv.setAdapter(moviesAdapter);
+        binding.moviesRv.setAdapter(moviesAdapter);
     }
 
     private void fetchMovies() {
