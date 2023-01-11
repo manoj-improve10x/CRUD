@@ -37,7 +37,7 @@ public class TemplatesAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull TemplateViewHolder holder, int position) {
         Template template = templates.get(position);
-        holder.binding.templateTextTxt.setText(template.messageText);
+        holder.binding.setTemplate(template);
         holder.binding.deleteBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(template.id);
         });
