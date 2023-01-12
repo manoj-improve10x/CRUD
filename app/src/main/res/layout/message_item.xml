@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,9 +10,7 @@
             type="com.example.crud.message.Message" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -43,6 +43,7 @@
                         android:layout_height="wrap_content"
                         android:paddingRight="2dp"
                         android:text="@{message.name}"
+                        android:textColor="@color/text_color_black"
                         tools:text="manoj" />
 
                     <TextView
@@ -51,6 +52,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@{message.number}"
+                        android:textColor="@color/text_color_black"
                         tools:text="+91 9000303015" />
                 </LinearLayout>
 
@@ -59,6 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{message.messageText}"
+                    android:textColor="@color/text_color_black"
                     tools:text="hello world" />
 
             </LinearLayout>

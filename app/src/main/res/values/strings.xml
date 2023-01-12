@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">CRUD</string>
+    <string name="name_text">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="message">Message</string>
+    <string name="movie_id">Movie_id</string>
+    <string name="movie_name">Movie Name</string>
+    <string name="series">Series</string>
+    <string name="image_url">Image Url</string>
+    <string name="description">Description</string>
+    <string name="series_name">Series Name</string>
+    <string name="series_id">Series Id</string>
 </resources>
